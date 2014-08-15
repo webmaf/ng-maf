@@ -1,0 +1,63 @@
+{
+
+    // standard browser globals should be predefined
+    "browser" : true,
+
+
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "forin": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": true,
+    "laxbreak": true,
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonew": false,
+    "plusplus": false,
+    "quotmark": "single",
+    "smarttabs": true,
+    "strict": true,
+    "sub": true,
+    "trailing": true,
+    "undef": false,
+    "unused": false,
+
+
+    "globals": {
+
+        "$": true,
+        "angular": true,
+
+        "console": true,
+
+        // requirejs
+        "define": true,
+        "require": true,
+        "requirejs": true,
+
+        // google
+        "google" : true,
+
+        // testing
+        "afterEach": true,
+        "beforeEach": true,
+        "describe": true,
+        "expect": true,
+        "inject": true,
+        "it": true,
+        "jasmine": true,
+        "module": true,
+        "protractor": true,
+        "spyOn": true,
+        "xdescribe": true,
+        "xit": true,
+        "createHttpPromiseSuccess": true,
+        "createHttpPromiseError": true
+    }
+
+}

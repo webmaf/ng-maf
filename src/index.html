@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html data-ng-app="tuiApp" data-ng-controller="AppCtrl" id="ng-app" lang="en">
+<!--[if IE 8]>
+<html class="no-js lt-ie9" data-ng-app="tuiApp" data-ng-controller="AppCtrl" id="ng-app" lang="en"> <![endif]-->
+<!--[if IE 9]>
+<html class="no-js lt-ie10" data-ng-app="tuiApp" data-ng-controller="AppCtrl" id="ng-app" lang="en"> <![endif]-->
+<head>
+    <title>Offers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!-- compiled CSS -->
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+    <% }); %>
+</head>
+<body>
+    <header></header>
+    <div class="container" data-ng-controller="OffersCtrl as offer">
+        <!-- START modules -->
+        <!-- compiled Modules -->
+        <% modules.forEach( function ( file, index ) { %>
+        <!-- <%= index %>. START <%= file.fileName %> -->
+        <%= file.fileContents %>
+        <!-- END <%= file.fileName %> -->
+        <% }); %>
+        <!-- END modules -->
+        Gruntfile.js
+
+
+    </div>
+    <footer class="footer">
+    </footer>
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script>
+    <% }); %>
+    <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
