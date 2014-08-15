@@ -1,0 +1,114 @@
+//Colors
+$color-base: #474747;
+$color-gray: #dfdfdf;
+$color-gray-dark: darken($color-gray, 25%);
+
+$border-base: #e1e1e1;
+$border-hr: #b2b2b2;
+
+$transparent-white-80: transparentize(#fff, .2);
+$transparent-white-30: transparentize(#fff, .3);
+$transparent-white-50: transparentize(#fff, .5);
+$transparent-black-50: transparentize(#000, .5);
+$transparent-black-80: transparentize(#000, .2);
+
+//Brand color
+$tui-red: #ef0000;
+
+//Pastel
+$tui-light-blue: #dcf0ff;
+$tui-cream: #fffad2;
+$tui-rose: #ebcddc;
+$tui-olive-green: #afb478;
+$tui-khaki: #c8c8b4;
+$tui-mint: #c3e1be;
+
+//Bright
+$tui-blue: #a0c8e6;
+$tui-yellow: #ffe100;
+$tui-orange: #faaf00;
+$tui-green: #a0c800;
+$tui-sand: #e6dcb9;
+$tui-turquoise: #64c3d7;
+
+//Muted
+$tui-dark-blue: #092a5e;
+$tui-gold: #b9a064;
+$tui-bordeaux: #640019;
+$tui-dark-green: #013b2b;
+$tui-brown: #3d1a0e;
+$tui-petrol: #002d41;
+
+//Non-colored
+$tui-white: #ffffff;
+$tui-light-grey: #dfdfdf;
+$tui-grey: #9b9b9b;
+$tui-grey-bg: #b9b9b9;
+
+//Reisewelten - .product-category
+$tui-classic: #ebd8b2;
+$tui-beach: #61c4d9;
+$tui-premium: #830f24;
+$tui-vital: #bed3bf;
+$tui-lifestyle: #bfb79b;
+$tui-nature: #c2d66b;
+$tui-scene: #e7c4d6;
+
+//Error
+$color-invalid: #ef0000;
+$border-invalid: #ef0000;
+$bg-invalid: rgba(239, 0, 0, 0.2);
+
+//Components
+$tui-links: #73afdc;
+$tui-links-hover: #73afdc;
+//CHANGE ME
+$tui-links-dark: $tui-dark-blue;
+$tui-links-dark-hover: #73afdc;
+//CHANGE ME
+
+$border-base: $tui-light-grey;
+$border-hr: #b2b2b2;
+
+$color-base: #474747;
+
+//Fonts
+$font-type-light: "TuitypeWebfontLight";
+$font-type-light-bold: "TuitypeWebfontLightBold";
+$font-type-bold: "TuitypeWebfontBold";
+
+$font-fallbacks: Helvetica, "Helvetica Neue", Arial, sans-serif;
+$font: $font-type-light, #{$font-fallbacks};
+$font-bold: $font-type-light-bold, #{$font-fallbacks};
+$font-webSymbols: "TuiIcon";
+
+//Sizes
+$font-xs-size: 1rem;
+$font-xs-lineheight: 1.4rem;
+
+$font-sm-size: 1.2rem;
+$font-sm-lineheight: 1.4em;
+
+$font-md-size: 1.4rem;
+$font-md-lineheight: 1.4em;
+
+$font-lg-size: 1.6rem;
+$font-lg-lineheight: 1.4em;
+
+//Icons
+$font-icon-size: 1.5rem;
+$font-icon-lineheight: 1.4em;
+$font-icon-color: #b2b2b2;
+
+//Header
+$background-header-height: 440px;
+$foreground-header-height: 90px;
+
+//global header
+$search-form-height: 90px;
+$search-form-height-tablet: 200px;
+$title-height: $background-header-height - ($foreground-header-height + $search-form-height);
+$title-height-tablet: $background-header-height - ($foreground-header-height + $search-form-height-tablet);
+
+//destination page
+$hero-teaser-height: 540px;

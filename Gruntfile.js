@@ -122,7 +122,7 @@ module.exports = function (grunt) {
             compile_js: {
                 options: {
                     banner: '<%= meta.banner %>',
-                    sourceMap : true,
+                    sourceMap : false,
                     stripBanners : false
                 },
                 src: [

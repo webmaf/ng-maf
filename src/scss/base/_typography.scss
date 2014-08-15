@@ -1,0 +1,83 @@
+body {
+    color: $color-base;
+    font-weight: normal;
+    font-size: $font-xs-size;
+    font-family: $font;
+    line-height: $font-xs-lineheight;
+
+    @include breakpoint(sm) {
+        font-size: $font-sm-size;
+        line-height: $font-sm-lineheight;
+    }
+
+    @include breakpoint(md) {
+        font-size: $font-md-size;
+        line-height: $font-md-lineheight;
+    }
+}
+
+b, strong {
+    font-weight: normal;
+    font-family: $font-bold;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin: 0;
+    color: $tui-dark-blue;
+}
+
+h1, .h1 {
+    font-size: 2.4rem;
+    line-height: 1.5em;
+
+    a {
+        color: $tui-dark-blue;
+    }
+}
+
+h2, .h2 {
+    font-size: 2.5rem;
+    color: $tui-dark-blue;
+    margin-bottom: 15px;
+
+    @include breakpoint(md) {
+        font-size: 2.6rem;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: $tui-dark-blue;
+    }
+}
+
+h3, .h3 {
+    font-size: 2.2rem;
+    color: $tui-dark-blue;
+    margin-bottom: 10px;
+
+    @include breakpoint(md) {
+        font-size: 2.4rem;
+        margin-bottom: 5px;
+    }
+
+    a {
+        color: $tui-dark-blue;
+    }
+}
+
+h4, .h4 {
+    font-size: 1.8rem;
+    color: $tui-dark-blue;
+    margin-bottom: ($line-height-computed/2);
+
+    a {
+        color: $tui-dark-blue;
+    }
+
+}
+

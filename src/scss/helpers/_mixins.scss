@@ -1,0 +1,57 @@
+//
+// Mixins
+// --------------------------------------------------
+
+// Breakpoints
+//
+// Sets the breakpoints for the different devices
+
+// xs -> extra small screens, phone, default
+// sm -> small screen, tablet
+// md -> medium screen, desktop
+// lg -> large screen, wide desktop
+
+@mixin breakpoint($device) {
+    @if ($device == sm) {
+        // from 480px
+        @media only screen and (min-width: $screen-sm-min) {
+            @content;
+        }
+    } @else if ($device == md) {
+        // from 768px
+        @media only screen and (min-width: $screen-md-min) {
+            @content;
+        }
+    } @else if ($device == lg) {
+        // from 992px
+        @media only screen and (min-width: $screen-lg-min) {
+            @content;
+        }
+    } @else if ($device == xl) {
+        // from 1200px - open end
+        @media only screen and (min-width: $screen-xl-min) {
+            @content;
+        }
+    }
+}
+
+// Fontsize
+//
+// This has pretty good modern browser support, it's just IE 8 and down we need to provide px fallbacks for.
+
+@mixin font-size($pixel) {
+    font-size: $pixel + px;
+    font-size: ($pixel / 10) + rem;
+}
+
+//
+// Import Once
+// --------------------------------------------------
+
+$modules: () !default;
+@mixin exports($name) {
+    @if not index($modules, $name) {
+        $modules: append($modules, $name) !global;
+        @content;
+    }
+}

@@ -15,25 +15,25 @@
     <% }); %>
 </head>
 <body>
-<header></header>
-<div class="container" data-ng-controller="OffersCtrl as offer">
-    <!-- START modules -->
-    <!-- compiled Modules -->
-    <% modules.forEach( function ( file, index ) { %>
-    <!-- <%= index %>. START <%= file.fileName %> -->
-    <%= file.fileContents %>
-    <!-- END <%= file.fileName %> -->
+    <header></header>
+    <div class="container" data-ng-controller="OffersCtrl as offer">
+        <!-- START modules -->
+        <!-- compiled Modules -->
+        <% modules.forEach( function ( file, index ) { %>
+        <!-- <%= index %>. START <%= file.fileName %> -->
+        <%= file.fileContents %>
+        <!-- END <%= file.fileName %> -->
+        <% }); %>
+        <!-- END modules -->
+        Gruntfile.js
+
+
+    </div>
+    <footer class="footer">
+    </footer>
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script>
     <% }); %>
-    <!-- END modules -->
-
-
-
-</div>
-<footer class="footer">
-</footer>
-<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-<script type="text/javascript" src="<%= file %>"></script>
-<% }); %>
-<script src="http://localhost:35729/livereload.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
 </body>
 </html>

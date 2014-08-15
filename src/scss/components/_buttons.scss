@@ -1,0 +1,26 @@
+.btn {
+    font-family: $font-type-light-bold;
+
+    @include breakpoint(lg) {
+        padding: 6px 9px;
+    }
+
+    @include breakpoint(xl) {
+        padding: 6px 12px;
+    }
+}
+
+.btn-warning {
+    background: linear-gradient($tui-yellow, $tui-orange);
+}
+
+
+$btn-understated-color:              #fdfdfd !default;
+$btn-understated-bg:                 #f8f8f8 !default;
+$btn-understated-border:             #ddd !default;
+
+.btn-understated {
+    @include button-variant($btn-understated-color, $btn-understated-bg, $btn-understated-border);
+    color: $tui-dark-blue;
+    font-family: $font-type-light;
+}

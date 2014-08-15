@@ -1,0 +1,332 @@
+/* === basic iconfont settings === */
+[data-icon]:before {
+    content: attr(data-icon);
+}
+
+[class*="icon-"]:before,
+[data-icon]:before,
+%icon {
+    font: {
+        family: $font-webSymbols;
+        style: normal;
+        weight: 500;
+        variant: normal;
+        size: $font-icon-size;
+    }
+    padding: 0 .3rem 0 0;
+    text-transform: none;
+    line-height: $font-icon-lineheight;
+    cursor: pointer;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === custom styles === */
+
+input.icon {
+    padding-left: 3rem;
+}
+
+.input-icon {
+    position: absolute;
+    margin-top: .6rem;
+    margin-left: .6rem;
+    color: $font-icon-color
+}
+
+/* === paste and override icon-font-mapping here === */
+
+.icon-x:before {
+    content: "\27";
+}
+
+.icon-bus:before {
+    content: "\6a";
+}
+
+.icon-moon:before {
+    content: "\47";
+}
+
+.icon-eat:before {
+    content: "\72";
+}
+
+.icon-heart-outline:before {
+    content: "\7a";
+}
+
+.icon-thumb:before {
+    content: "\59";
+}
+
+.icon-bubble-check:before {
+    content: "\66";
+}
+
+.icon-chat:before {
+    content: "\6c";
+}
+
+.icon-reduced:before {
+    content: "\50";
+}
+
+.icon-filter:before {
+    content: "\76";
+}
+
+.icon-gift:before {
+    content: "\77";
+}
+
+.icon-google-plus:before {
+    content: "\78";
+}
+
+.icon-hotel:before {
+    content: "\41";
+}
+
+.icon-location-full:before {
+    content: "\45";
+}
+
+.icon-location:before {
+    content: "\44";
+}
+
+.icon-minus:before {
+    content: "\46";
+}
+
+.icon-people-single:before {
+    content: "\4c";
+}
+
+.icon-people-friends:before {
+    content: "\4b";
+}
+
+.icon-people-couple:before {
+    content: "\49";
+}
+
+.icon-people-family:before {
+    content: "\4a";
+}
+
+.icon-search:before {
+    content: "\52";
+}
+
+.icon-shoe:before {
+    content: "\54";
+}
+
+%full-star,
+.icon-star-full:before {
+    content: "\56";
+}
+
+%half-star,
+.icon-star-half:before {
+    content: "\57";
+}
+
+.icon-phone:before {
+    content: "\4d";
+}
+
+.icon-water:before {
+    content: "\36";
+}
+
+.icon-house:before {
+    content: "\42";
+}
+
+.icon-facebook:before {
+    content: "\74";
+}
+
+.icon-facility:before {
+    content: "\75";
+}
+
+.icon-tui-smile:before {
+    content: "\32";
+}
+
+.icon-swim:before {
+    content: "\58";
+}
+
+.icon-wellness:before {
+    content: "\26";
+}
+
+.icon-clock:before {
+    content: "\6e";
+}
+
+.icon-download:before {
+    content: "\70";
+}
+
+.icon-expert:before {
+    content: "\73";
+}
+
+.icon-heart:before {
+    content: "\79";
+}
+
+.icon-navigation:before {
+    content: "\48";
+}
+
+.icon-pictures:before {
+    content: "\4e";
+}
+
+.icon-shopping:before {
+    content: "\55";
+}
+
+.icon-plus:before {
+    content: "\4f";
+}
+
+.icon-service:before {
+    content: "\53";
+}
+
+.icon-weather-sun:before {
+    content: "\25";
+}
+
+.icon-weather-snow:before {
+    content: "\24";
+}
+
+.icon-weather-cloud:before {
+    content: "\22";
+}
+
+.icon-weather-rain:before {
+    content: "\23";
+}
+
+.icon-way-up:before {
+    content: "\21";
+}
+
+.icon-way-right:before {
+    content: "\39";
+}
+
+.icon-way-left:before {
+    content: "\38";
+}
+
+.icon-way-down:before {
+    content: "\37";
+}
+
+.icon-tui-com:before {
+    content: "\31";
+}
+
+.icon-tui-at:before {
+    content: "\30";
+}
+
+.icon-tui:before {
+    content: "\5a";
+}
+
+.icon-tui-world-of:before {
+    content: "\33";
+}
+
+.icon-twitter-bird:before {
+    content: "\34";
+}
+
+.icon-up:before {
+    content: "\35";
+}
+
+.icon-right:before {
+    content: "\51";
+}
+
+.icon-left:before {
+    content: "\43";
+}
+
+.icon-down:before {
+    content: "\6f";
+}
+
+.icon-duration:before {
+    content: "\71";
+}
+
+.icon-check:before {
+    content: "\6d";
+}
+
+.icon-calendar:before {
+    content: "\6b";
+}
+
+.icon-bubble-info:before {
+    content: "\69";
+}
+
+.icon-bubble-important:before {
+    content: "\68";
+}
+
+.icon-bubble-close:before {
+    content: "\67";
+}
+
+.icon-best-price:before {
+    content: "\65";
+}
+
+.icon-bed:before {
+    content: "\64";
+}
+
+.icon-bear:before {
+    content: "\63";
+}
+
+.icon-aircraft:before {
+    content: "\61";
+}
+
+.icon-aircraft-up:before {
+    content: "\62";
+}
+
+.icon-gallery:before {
+    content: "\2f";
+}
+
+.icon-list:before {
+    content: "\28";
+}
+
+.icon-thumb-down:before {
+    content: "\29";
+}
+
+.icon-print:before {
+    content: "\2a";
+}

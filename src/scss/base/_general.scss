@@ -1,0 +1,25 @@
+body {
+    background-color: $tui-light-blue;
+
+    .container {
+        background: #ffffff;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+
+    > .header {
+        position: relative;
+        z-index: 1;
+        height: $foreground-header-height;
+        background-color: $transparent-white-30;
+    }
+}
+
+hr {
+    border-color: $border-hr;
+}
+
+[class*="module-"] {
+    margin-top: 4rem;
+}

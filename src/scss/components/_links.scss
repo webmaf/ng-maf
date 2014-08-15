@@ -1,0 +1,13 @@
+a,
+a:hover {
+    color: $color-base;
+    text-decoration: none;
+}
+
+[data-ng-click] {
+    cursor: pointer;
+}
+
+a.form-control {
+    padding-right: 0;
+}
