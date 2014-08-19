@@ -14,12 +14,6 @@ module.exports = {
     temp_dir: '.tmp',
     reports_dir: '../WEB-INF/reports',
 
-    compile_css_tag: '../WEB-INF/views/blocks/css-tags.jsp',
-    compile_js_tag: '../WEB-INF/views/blocks/js-tags.jsp',
-
-    compile_css_tag_temp: 'config/css-tags.js',
-    compile_js_tag_temp: 'config/js-tags.js',
-
     /**
      * Ports to listen on
      */
@@ -39,11 +33,11 @@ module.exports = {
      * Filenames
      */
 
-    main_css_filname : 'screen-ext',
-    main_js_filname : 'tui',
+    main_css_filname : 'screen',
+    main_js_filname : 'maf',
 
     // contains angular
-    app_js_filname : 'tui.app',
+    app_js_filname : 'maf.app',
 
     /**
      * This is a collection of file patterns that refer to our app code (the
@@ -91,18 +85,10 @@ module.exports = {
      * The `vendor_files.assets` property holds any assets to be copied along
      * with our app's assets. This structure is flattened, so it is not
      * recommended that you use wildcards.
-     *
-     * js_alt is used for pages, which already provide angularjs (eg neusta)
      */
     vendor_files: {
         js: [
-
             'vendor/angular/angular.js',
-            'vendor/angular-touch/angular-touch.js',
-            'vendor/angular-animate/angular-animate.js'
-        ],
-        js_alt: [
-
             'vendor/angular-touch/angular-touch.js',
             'vendor/angular-animate/angular-animate.js'
         ],

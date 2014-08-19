@@ -24,14 +24,7 @@
     "grunt-contrib-uglify": "^0.2.7",
     "grunt-contrib-watch": "^0.4.4",
     "grunt-html2js": "^0.1.9",
-    "grunt-karma": "^0.8.3",
-    "grunt-ng-annotate": "^0.3.0",
     "grunt-preprocess": "~4.0.0",
-    "jshint-junit-reporter": "0.0.6",
-    "karma": "^0.12.19",
-    "karma-coverage": "~0.2.4",
-    "karma-jasmine": "^0.1.5",
-    "karma-junit-reporter": "^0.2.2",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "jshint-junit-reporter": "0.0.6"
   }
 }
