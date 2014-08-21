@@ -10,7 +10,7 @@ module.exports = {
 
     build_dir: 'build',
     tests_dir: 'karma-tests',
-    compile_dir: '../WEB-INF/ui-build',
+    compile_dir: 'compile',
     temp_dir: '.tmp',
     reports_dir: '../WEB-INF/reports',
 
@@ -90,7 +90,9 @@ module.exports = {
         js: [
             'vendor/angular/angular.js',
             'vendor/angular-touch/angular-touch.js',
-            'vendor/angular-animate/angular-animate.js'
+            'vendor/angular-route/angular-route.js',
+            'vendor/angular-animate/angular-animate.js',
+            'vendor/angular-xml/angular-xml.js'
         ],
         css: [
         ],

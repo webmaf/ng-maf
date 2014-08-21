@@ -1,0 +1,51 @@
+.module-hotel-location {
+    color: $tui-dark-blue;
+    border-bottom: 1px solid $tui-light-blue;
+
+    section {
+        padding: 0 $padding-large-horizontal * 2;
+    }
+
+    @include breakpoint(md) {
+        border: 0;
+
+        section {
+            padding: 0;
+            border-bottom: 1px solid $tui-light-blue;
+        }
+    }
+
+    h4 {
+        margin: $padding-large-vertical 0;
+        line-height: 1.6em;
+        cursor: pointer;
+    }
+
+    .icon-way-right, .icon-way-down {
+        display: none;
+
+        @include breakpoint(md) {
+            display: inline-block;
+        }
+
+        &:before, &:after {
+            padding: $padding-base-horizontal;
+            color: $tui-grey;
+            font-size: 1.2rem;
+        }
+    }
+
+    .description-content {
+        display: none;
+        padding: 0 0 1.2rem 1.2rem;
+    }
+
+    .open {
+        .description-content {
+            display: block;
+        }
+        .icon-way-right {
+            @extend .icon-way-down;
+        }
+    }
+}
