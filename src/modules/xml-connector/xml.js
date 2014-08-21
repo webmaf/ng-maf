@@ -1,11 +1,6 @@
-angular.module('blogs', ['xml'])
-
-//    .config(function ($httpProvider) {
-//        $httpProvider.interceptors.push('xmlHttpInterceptor');
-//    })
-
-    .controller('blubb', function ($scope, $http) {
-        $http.get('xmlSpec.xml').then(function (response) {
+app.controller('blubb', function ($scope, $http) {
+//        $http.get('mock/xmlSpec.xml').then(function (response) {
+        $http.get('http://steamcommunity.com/id/webmaf/stats/BioShockInfinite?tab=achievements&xml=1&l=german').then(function (response) {
             var blogs = [],
                 els = response.xml.find('blog'),
                 blog, i;

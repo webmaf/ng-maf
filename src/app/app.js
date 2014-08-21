@@ -1,9 +1,10 @@
 var app = angular.module('mafApp', [
-    'ngRoute'
+    'ngRoute',
+    'xml'
 ]);
 
 app.config(function config($httpProvider) {
-//    $httpProvider.interceptors.push('xmlHttpInterceptor');
+    $httpProvider.interceptors.push('xmlHttpInterceptor');
 });
 
 app.run(function run() {
