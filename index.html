@@ -7,6 +7,7 @@
 <head>
     <title>ng-maf | singelpage</title>
     <meta charset="utf-8">
+    <meta Access-Control-Allow-Origin="*">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="msapplication-tap-highlight" content="no"/>
     <link rel="stylesheet" type="text/css" href="compile/css/screen.css"/>
@@ -18,6 +19,7 @@
 
     <div class="container">
         <div ng-controller="blubb">
+            <h3 class="col-xs-12">Blogs</h3>
             <ul class="blogs">
                 <li ng-repeat="blog in blogs">{{blog.id}} - {{blog.name}}</li>
             </ul>
