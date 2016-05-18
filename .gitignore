@@ -1,0 +1,24 @@
+### Windows template
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Generated
+.idea
+node_modules
+bower_components/
+*.log
+
+# Custom
+vendor
+Gemfile.lock
+deploy
+dist
