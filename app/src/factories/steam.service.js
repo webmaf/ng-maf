@@ -9,8 +9,8 @@
 
     function steamService($http) {
         var service = {
-            getInfo: getInfo,
             getSteamXML: getSteamXML,
+            getSteamGames: getSteamGames
         };
 
         return service;
@@ -19,19 +19,34 @@
         // ====================================================================================
 
         function getSteamXML(profile, game) {
-            var url = 'http://steamcommunity.com/id/webmaf/stats/377160/?tab=achievements&xml=1';
+            var url,
+                gID = game || '377160',
+                pID = profile || 'id/webmaf';
 
-            //http://steamcommunity.com/profiles/76561197971413380/stats/377160/?tab=achievements&xml=1
+            url = 'http://steamcommunity.com/' + pID + '/stats/' + gID + '/?xml=1&l=german&tab=achievements';
 
             return $http({
+                url: 'php/steam.php',
                 method: 'POST',
-                url: url,
-                data: flightData.data
+                data: {
+                    url: url
+                }
             });
         }
 
-        function getInfo() {
-            console.log(123);
+        function getSteamGames(profile) {
+            var url,
+                pID = profile || 'id/webmaf';
+
+            url = 'http://steamcommunity.com/' + pID + '/games?tab=all&xml=1';
+
+            return $http({
+                url: 'php/steamGames.php',
+                method: 'POST',
+                data: {
+                    url: url
+                }
+            });
         }
     }
 

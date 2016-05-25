@@ -19,7 +19,7 @@ gulp.task('local', function () {
         ['clean'],
         ['lintScripts', 'lintStylesDev', 'karmaDev'],
         ['scripts', 'sass', 'copyConfigJS', 'copyAssets', 'copyVendorJS'],
-        ['browserSyncLocal'],
+        //['browserSyncLocal'],
         ['watch']
     );
 });

@@ -1,0 +1,40 @@
+<div style="margin: 10px auto; padding: 0 20px;">
+    <div class="row">
+        <div class="col-xs-2">Spielerauswahl:</div>
+        <div class="col-xs-8 btn-group">
+            <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}} </button>
+        </div>
+        <div class="col-xs-2">
+            <button data-ng-if="1" type="button" class="btn btn-info" data-ng-click="getGamesFromGamer()"> collectAllGames </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-2">Filter:</div>
+        <div class="col-xs-6 btn-group">
+            <button data-ng-if="filter.modus == 0" data-ng-repeat="filter in filterSet" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : filterActive == filter.name}" data-ng-click="toggleFilter(filter.name)"> {{filter.name}} </button>
+        </div>
+        <div class="col-xs-2">
+            <select aria-label="ngSelected demo">
+                <option>Hello!</option>
+                <option data-ng-repeat="game in games" data-ng-selected="{'btn-primary' : gameActive == filter.name}"> {{game.name}} </option>
+            </select>
+            {{$scope.games}}
+        </div>
+        <div class="col-xs-2">
+            <button data-ng-if="1" type="button" class="btn btn-primary" data-ng-click="compareGame()"> compareGame </button>
+        </div>
+    </div>
+    <br>
+    <div data-ng-repeat="achievement in achievements" data-ng-if="1">
+        <div class="row">
+            <div class="col-xs-3">
+                <image src="{{achievement.image}}"/>
+            </div>
+            <!--<div class="col-xs-3">{{achievement.api}}</div>-->
+            <div class="col-xs-4">{{achievement.name}}</div>
+            <div class="col-xs-4">{{achievement.description}}</div>
+            <div class="col-xs-1">{{achievement.time}}</div>
+        </div>
+    </div>
+</div>
