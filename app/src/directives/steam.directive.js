@@ -46,25 +46,25 @@
                     {name: 'default', order: 'api', modus: 0},
                     {name: 'name', order: 'name', modus: 0},
                     {name: 'description', order: 'description', modus: 0},
-                    {name: 'unlock', order: 'unlock', modus: 1},
+                    {name: 'unlock', order: 'unlock', modus: 0},
                     {name: 'timestamp', order: 'stamp', modus: 1}
                 ];
-                $scope.game = {
-                    //id: 377160, //fallout
-                    id: 292030, //witcher3
-                    name: 'toll'
-                };
+                $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
+                $scope.gamelist = $scope.games[0];
             }
 
             function compareGame() {
-                steamService.getSteamXML($scope.gamer[3].profile, $scope.game.id)
-                    .then(function (response) {
-                        console.log(response);
-                        if (response.data && response.data != '') {
-                            $scope.achievements = response.data;
-                            toggleFilter('default');
-                        }
-                    });
+                if ($scope.gamelist.achievement && $scope.gamelist.globalStatsLink) {
+                    steamService.getSteamXML($scope.gamer[3].profile, $scope.gamelist.achievement)
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.data && response.data != '') {
+                                $scope.achievements = response.data;
+                                toggleFilter('default');
+                            }
+                        });
+
+                }
             }
 
             function getGamesFromGamer() {
@@ -74,12 +74,10 @@
                             console.log(response);
                             if (response.data && response.data != '') {
                                 $scope.games = response.data;
-                                console.log(12);
                                 localStorage.setItem('webmafGames', JSON.stringify($scope.games));
+                                $scope.gamelist = $scope.games[0];
                             }
                         });
-                } else {
-                    $scope.games = JSON.parse(localStorage.webmafGames);
                 }
             }
 

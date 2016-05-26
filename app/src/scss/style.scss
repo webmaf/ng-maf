@@ -1,1 +1,7 @@
 @import '../../../vendor/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../../../vendor/bootstrap-select/sass/bootstrap-select';
+
+.selectpicker.fullsize,
+.bootstrap-select.fullsize {
+    width: 100% !important;
+}

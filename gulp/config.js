@@ -29,7 +29,10 @@ module.exports = {
         htmlTemplates: '**/*.tpl.html',
         mockAllFiles: '**/*.mock.json',
         vendorJS: [
-            'vendor/angular/angular.min.js'
+            'vendor/angular/angular.min.js',
+            'vendor/jquery/dist/jquery.min.js',
+            'vendor/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'
         ],
         renderJS: 'app/src/**/*.js',
         specs: 'app/src/**/*.spec.js',

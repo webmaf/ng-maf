@@ -11,14 +11,16 @@ $gather = array();
 
 if (!boolval($xml->error)) {
     foreach ($xml->games->game as $game) {
-
-        $gather[] = array(
-            'api' => (float)$game->appID,
-            'name' => (string)$game->name,
-            'logo' => (string)$game->logo,
-            'storeLink' => (string)$game->storeLink,
-            'globalStatsLink' => (string)$game->globalStatsLink
-        );
+        if ((string)$game->globalStatsLink) {
+            $gather[] = array(
+                'api' => (float)$game->appID,
+                'achievement' => str_replace(array('http://steamcommunity.com/stats/', '/achievements/'), '', (string)$game->globalStatsLink),
+                'name' => (string)$game->name,
+                'logo' => (string)$game->logo,
+                'storeLink' => (string)$game->storeLink,
+                'globalStatsLink' => (string)$game->globalStatsLink
+            );
+        }
     }
 } else {
     $gather[] = null;

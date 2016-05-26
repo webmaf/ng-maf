@@ -30,14 +30,4 @@ module.exports = function (config) {
         return gulp.src(config.files.assets)
             .pipe(gulp.dest(config.dir.dist + '/assets/'));
     });
-
-    gulp.task('copyBackstop', function () {
-        return gulp.src(config.files.backstop)
-            .pipe(gulp.dest(config.dir.dist + '/backstop/'));
-    });
-
-    gulp.task('copyCucumber', function () {
-        return gulp.src(config.files.cucumber)
-            .pipe(gulp.dest(config.dir.dist + '/cucumber/'));
-    });
 };
