@@ -1,7 +1,45 @@
 @import '../../../vendor/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '../../../vendor/bootstrap-select/sass/bootstrap-select';
 
-.selectpicker.fullsize,
-.bootstrap-select.fullsize {
-    width: 100% !important;
+.compare-achievements {
+    .selectpicker.fullsize,
+    .bootstrap-select.fullsize {
+        width: 100% !important;
+    }
+
+    .achievement-image {
+        height: 94px;
+
+        img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+            &.fe {
+                top: 20px;
+                left: 20px;
+                -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+                -moz-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+                box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+            }
+        }
+    }
+
+    .achievements {
+        .label {
+            font-weight: normal;
+            margin-top: 15px;
+            display: inline-block;
+        }
+    }
+
+    .content {
+        margin-top: 220px;
+    }
+
+    .navbar {
+        label {
+            margin-top: 6px;
+        }
+    }
 }

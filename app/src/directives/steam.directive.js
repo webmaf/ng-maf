@@ -35,12 +35,12 @@
              */
             function activate() {
                 $scope.gamer = [
-                    {name: 'asmo', profile: '/profiles/76561197987497201', active: false},
+                    {name: 'asmo', profile: 'profiles/76561197987497201', active: false},
                     {name: 'janleon', profile: 'profiles/76561197995374327', active: false},
                     {name: 'jessi', profile: 'profiles/76561197960362967', active: false},
                     {name: 'maf', profile: 'profiles/76561197995754090', active: true},
-                    {name: 'melth', profile: '/profiles/76561198005875496', active: false},
-                    {name: 'sarx', profile: '/profiles/76561197971413380', active: false}
+                    {name: 'melth', profile: 'profiles/76561198005875496', active: false},
+                    {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
                 $scope.filterSet = [
                     {name: 'default', order: 'api', modus: 0},
@@ -54,12 +54,68 @@
             }
 
             function compareGame() {
-                if ($scope.gamelist.achievement && $scope.gamelist.globalStatsLink) {
-                    steamService.getSteamXML($scope.gamer[3].profile, $scope.gamelist.achievement)
+                var player = {
+                    profiles: [],
+                    names: []
+                };
+
+                for (var index in $scope.gamer) {
+                    if ($scope.gamer[index].active) {
+                        player.names.push($scope.gamer[index].name);
+                        player.profiles.push($scope.gamer[index].profile);
+                    }
+                }
+
+                if (player.names.length && $scope.gamelist.achievement && $scope.gamelist.globalStatsLink) {
+                    steamService.getSteamXML(player, $scope.gamelist.achievement)
                         .then(function (response) {
-                            console.log(response);
+                            var savingAchievement = 0;
+
                             if (response.data && response.data != '') {
-                                $scope.achievements = response.data;
+                                $scope.achievements = [];
+                                $scope.tableHeader = [];
+                                console.log(response.data);
+
+                                for (var i = 0, l = response.data.length; i < l; i++) { // i = count of gamer
+                                    for (var j = 0, k = response.data[i].length; j < k; j++) { // j = count of achievements
+                                        if (response.data[i][0] == null) {
+                                            savingAchievement++;
+                                            break;
+                                        } else {
+                                            if (i == savingAchievement) {
+                                                if (response.data[i][j].api == 'countOfUnlock') {
+                                                    $scope.tableHeader[j] = {
+                                                        api: response.data[i][j].api,
+                                                        gamer: []
+                                                    };
+                                                } else {
+                                                    $scope.achievements[j] = {
+                                                        api: response.data[i][j].api,
+                                                        description: response.data[i][j].description,
+                                                        imageClosed: response.data[i][j].imageClosed,
+                                                        imageOpen: response.data[i][j].imageOpen,
+                                                        name: response.data[i][j].name,
+                                                        gamer: []
+                                                    };
+                                                }
+                                            }
+
+                                            if (response.data[i][j].api == 'countOfUnlock') {
+                                                $scope.tableHeader[j].gamer[i] = {
+                                                    player: response.data[i][j].player,
+                                                    count: response.data[i][j].count
+                                                };
+                                            } else {
+                                                $scope.achievements[j].gamer[i] = {
+                                                    stamp: response.data[i][j].stamp,
+                                                    time: response.data[i][j].time,
+                                                    unlock: response.data[i][j].unlock
+                                                };
+                                            }
+                                        }
+                                    }
+                                }
+                                console.log($scope.achievements);
                                 toggleFilter('default');
                             }
                         });

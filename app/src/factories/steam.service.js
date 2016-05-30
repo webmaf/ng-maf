@@ -18,19 +18,20 @@
         // ----- functions
         // ====================================================================================
 
-        function getSteamXML(profile, game) {
-            var url,
-                gID = game || '377160',
-                pID = profile || 'id/webmaf';
+        function getSteamXML(player, game) {
+            var gID = game || '377160',
+                names = player.names || ['maf'],
+                profiles = player.profiles || ['id/webmaf'];
 
-            url = 'http://steamcommunity.com/' + pID + '/stats/' + gID + '/?xml=1&l=german&tab=achievements';
 
-            console.log(url);
+
             return $http({
                 url: 'php/steam.php',
                 method: 'POST',
                 data: {
-                    url: url
+                    game: gID,
+                    names: names,
+                    profiles: profiles
                 }
             });
         }
