@@ -115,8 +115,7 @@
                                         }
                                     }
                                 }
-                                console.log($scope.achievements);
-                                toggleFilter('default');
+                                //toggleFilter('default');
                             }
                         });
 
@@ -152,6 +151,38 @@
                 steamOrder(filter);
                 $scope.filterActive = filter;
             }
+
+            // later to be remove
+            $scope.tests = [
+                {so: 4, weiter: [
+                    {da: 5},
+                    {da: 4},
+                    {da: 3},
+                    {da: 2},
+                    {da: 1}
+                ]},
+                {so: 2, weiter: [
+                    {da: 1},
+                    {da: 2},
+                    {da: 3},
+                    {da: 4},
+                    {da: 5}
+                ]},
+                {so: 3, weiter: [
+                    {da: 1},
+                    {da: 4},
+                    {da: 2},
+                    {da: 5},
+                    {da: 3}
+                ]},
+                {so: 1, weiter: [
+                    {da: 3},
+                    {da: 5},
+                    {da: 2},
+                    {da: 4},
+                    {da: 1}
+                ]}
+            ];
         }
     }
 }());

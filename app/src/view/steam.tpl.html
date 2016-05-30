@@ -1,87 +1,77 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <!--<div class="container">-->
     <br>
-    <div class="row">
-        <div class="col-xs-2"><label>Spiel</label></div>
-        <div class="col-xs-7 btn-group">
-            <select name="peter" class="selectpicker fullsize" data-live-search="true" data-ng-model="gamelist" data-ng-options="option.name for option in games"></select>
-            <div class="row well-sm">
-                <div class="col-xs-8">
-                    <!--<span class="glyphicon glyphicon-tower" aria-hidden="true"></span>-->
-                    {{games.length}} games, last update: 27.05.2015
+    <div class="options">
+        <div class="row">
+            <div class="col-xs-2"><label>Spiel</label></div>
+            <div class="col-xs-7 btn-group">
+                <select name="peter" class="selectpicker fullsize" data-live-search="true" data-ng-model="gamelist" data-ng-options="option.name for option in games"></select>
+                <div class="row well-sm">
+                    <div class="col-xs-8">
+                        <!--<span class="glyphicon glyphicon-tower" aria-hidden="true"></span>-->
+                        {{games.length}} games, last update: 27.05.2015
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <a data-ng-click="getGamesFromGamer()">collect all games</a>
+                    </div>
                 </div>
-                <div class="col-xs-4 text-right">
-                    <a data-ng-click="getGamesFromGamer()">collect all games</a>
+            </div>
+            <div class="col-xs-3 text-right">
+                <!--<a src="{{gamelist.storeLink}}">-->
+                <img data-ng-src="{{gamelist.logo}}">
+                <!--</a>-->
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2"><label>Spielerauswahl</label></div>
+            <div class="col-xs-7 btn-group">
+                <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}}</button>
+            </div>
+            <div class="col-xs-3">
+                <button data-ng-if="1" type="button" class="btn btn-block btn-primary" data-ng-click="compareGame()"> compareGame</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container sorter">
+        <div data-ng-repeat="achievement in tableHeader" data-ng-if="1">
+            <div class="row" data-ng-if="achievement.api == 'countOfUnlock'">
+                <div class="col-xs-2 col-md-1">
+                    <button type="button" class="btn btn-default disabled">Sorting: </button>
+                </div>
+                <div class="col-xs-5 col-md-6">
+                    <button type="button" class="btn btn-default" data-ng-class="{'btn-primary' : filterActive == filter.name}" data-ng-click="toggleFilter(filter.name)">Erfolg <span class="badge">max: {{achievements.length}}</span></button>
+                </div>
+                <div class="col-xs-5">
+                    <div class="row" data-ng-show="achievement">
+                        <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
+                            <button type="button" class="btn btn-default disabled">{{player.player}} <span class="badge">{{player.count}}</span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xs-3 text-right">
-            <!--<a src="{{gamelist.storeLink}}">-->
-            <img data-ng-src="{{gamelist.logo}}">
-            <!--</a>-->
-        </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-xs-2"><label>Spielerauswahl</label></div>
-        <div class="col-xs-10 btn-group">
-            <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}}</button>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-2"><label>Sortierung</label></div>
-        <div class="col-xs-7 btn-group">
-            <button data-ng-if="filter.modus == 0" data-ng-repeat="filter in filterSet" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : filterActive == filter.name}" data-ng-click="toggleFilter(filter.name)"> {{filter.name}}</button>
-        </div>
-        <div class="col-xs-3">
-            <button data-ng-if="1" type="button" class="btn btn-block btn-primary" data-ng-click="compareGame()"> compareGame</button>
-        </div>
-    </div>
-    <br>
-    <!--</div>-->
 </nav>
-<div class="content">
-
-    <div data-ng-repeat="achievement in tableHeader" data-ng-if="1">
-        <div class="row " data-ng-if="achievement.api == 'countOfUnlock'">
-            <div class="col-xs-1">Icon</div>
-            <div class="col-xs-6">Achievement</div>
-            <div class="col-xs-5">
-                <div class="row" data-ng-show="achievement">
-                    <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
-                        <p>{{player.player}} <span class="badge">{{player.count}}</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div data-ng-repeat="achievement in achievements" data-ng-if="1">
-        <div class="row " data-ng-if="achievement.api == 'countOfUnlock'">
-            <div class="col-xs-1">Icon</div>
-            <div class="col-xs-6">Achievement</div>
-            <div class="col-xs-5">
-                <div class="row" data-ng-show="achievement">
-                    <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
-                        <p>{{player.player}} <span class="badge">{{player.count}}</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row achievements">
-            <div class="col-xs-1 achievement-image">
+<section class="achievements">
+    <div data-ng-repeat="achievement in achievements | orderBy:-gamer[0].unlock" data-ng-if="1">
+        <div class="row">
+            <div class="col-xs-2 col-md-1 achievement-image">
                 <img class="be" src="{{achievement.imageOpen}}">
                 <img class="fe" src="{{achievement.imageClosed}}">
             </div>
             <!--<div class="col-xs-3">{{achievement.api}}</div>-->
-            <div class="col-xs-6">
+            <div class="col-xs-5 col-md-6">
+                <!--<h4>{{achievement.api}}</h4>-->
                 <h4>{{achievement.name}}</h4>
                 <p>{{achievement.description}}</p>
             </div>
             <div class="col-xs-5">
                 <div class="row">
                     <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
-                        <p data-ng-if="$first">{{player.total}}</p>
+                        <!--<span>{{player.unlock}}</span>-->
                         <span class="label label-success" data-ng-show="{{player.unlock}}">{{player.time}}</span>
                         <span class="label label-danger" data-ng-hide="{{player.unlock}}">not finish</span>
                     </div>
@@ -90,12 +80,8 @@
         </div>
     </div>
 
-    <div data-ng-repeat="test in tests">
-        <b>{{test.so}}</b> -->
-        <span data-ng-repeat="oh in test.weiter | orderBy: weiter">
-            {{oh.da}} /
-        </span>
-    </div>
-
-
+    <!--<div data-ng-repeat="test in tests | orderBy:['weiter[2].da', 'weiter[2].da']">-->
+        <!--<b>{{test.so}} -&ndash;&gt; </b>-->
+        <!--<span data-ng-repeat="o in test.weiter"> {{o.da}} / </span>-->
+    <!--</div>-->
 </section>

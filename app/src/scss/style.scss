@@ -26,6 +26,8 @@
     }
 
     .achievements {
+        margin-top: 242px;
+
         .label {
             font-weight: normal;
             margin-top: 15px;
@@ -33,13 +35,13 @@
         }
     }
 
-    .content {
-        margin-top: 220px;
-    }
-
     .navbar {
         label {
             margin-top: 6px;
         }
+    }
+
+    .options {
+        padding: 0 20px;
     }
 }
