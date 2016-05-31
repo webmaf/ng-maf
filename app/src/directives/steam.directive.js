@@ -73,12 +73,12 @@
 
                             $scope.achievements = [];
                             $scope.tableHeader = [];
-                            if (response.data && response.data != '') {
+                            if (response.data && response.data !== '') {
                                 console.log(response.data);
 
                                 for (var i = 0, l = response.data.length; i < l; i++) { // i = count of gamer
                                     for (var j = 0, k = response.data[i].length; j < k; j++) { // j = count of achievements
-                                        if (response.data[i][0] == null) {
+                                        if (response.data[i][0] === null) {
                                             savingAchievement++;
                                             break;
                                         } else {
@@ -126,11 +126,11 @@
             }
 
             function getGamesFromGamer() {
-                if (!localStorage.webmafGames || localStorage.webmafGames && localStorage.webmafGames.length == 0) {
+                if (!localStorage.webmafGames || localStorage.webmafGames && localStorage.webmafGames.length === 0) {
                     steamService.getSteamGames($scope.gamer[3].profile)
                         .then(function (response) {
                             console.log(response);
-                            if (response.data && response.data != '') {
+                            if (response.data && response.data !== '') {
                                 $scope.games = response.data;
                                 localStorage.setItem('webmafGames', JSON.stringify($scope.games));
                                 $scope.gamelist = $scope.games[0];
