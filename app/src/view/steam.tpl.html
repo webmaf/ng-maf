@@ -41,12 +41,12 @@
                     <button type="button" class="btn btn-default disabled">Sorting: </button>
                 </div>
                 <div class="col-xs-5 col-md-6">
-                    <button type="button" class="btn btn-default" data-ng-class="{'btn-primary' : filterActive == filter.name}" data-ng-click="toggleFilter(filter.name)">Erfolg <span class="badge">max: {{achievements.length}}</span></button>
+                    <button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'name'}" data-ng-click="steamOrder('name')">Erfolgsbezeichnung <span class="badge">max: {{achievements.length}}</span></button>
                 </div>
                 <div class="col-xs-5">
                     <div class="row" data-ng-show="achievement">
                         <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
-                            <button type="button" class="btn btn-default disabled">{{player.player}} <span class="badge">{{player.count}}</span></button>
+                            <button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'player' + $index}" data-ng-click="steamOrder('player' + $index)">{{player.player}} <span class="badge">{{player.count}}</span></button>
                         </div>
                     </div>
                 </div>
@@ -56,22 +56,19 @@
     <br>
 </nav>
 <section class="achievements">
-    <div data-ng-repeat="achievement in achievements | orderBy:-gamer[0].unlock" data-ng-if="1">
+    <div data-ng-repeat="achievement in achievements" data-ng-if="loadAchievement">
         <div class="row">
             <div class="col-xs-2 col-md-1 achievement-image">
                 <img class="be" src="{{achievement.imageOpen}}">
                 <img class="fe" src="{{achievement.imageClosed}}">
             </div>
-            <!--<div class="col-xs-3">{{achievement.api}}</div>-->
             <div class="col-xs-5 col-md-6">
-                <!--<h4>{{achievement.api}}</h4>-->
-                <h4>{{achievement.name}}</h4>
+                <h4>{{achievement.name}} <span glyphicon glyphicon-barcode title="{{achievement.api}}" aria-hidden="true"></span></h4>
                 <p>{{achievement.description}}</p>
             </div>
             <div class="col-xs-5">
                 <div class="row">
                     <div class="col-xs-3" data-ng-repeat="player in achievement.gamer">
-                        <!--<span>{{player.unlock}}</span>-->
                         <span class="label label-success" data-ng-show="{{player.unlock}}">{{player.time}}</span>
                         <span class="label label-danger" data-ng-hide="{{player.unlock}}">not finish</span>
                     </div>
@@ -79,9 +76,5 @@
             </div>
         </div>
     </div>
-
-    <!--<div data-ng-repeat="test in tests | orderBy:['weiter[2].da', 'weiter[2].da']">-->
-        <!--<b>{{test.so}} -&ndash;&gt; </b>-->
-        <!--<span data-ng-repeat="o in test.weiter"> {{o.da}} / </span>-->
-    <!--</div>-->
+    <div data-ng-show="steamCompareStart && !loadAchievement">Keine Daten vorhanden</div>
 </section>

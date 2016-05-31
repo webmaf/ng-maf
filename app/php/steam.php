@@ -17,7 +17,7 @@ if (count($profiles) > 0) {
         $xml = @simplexml_load_file($url);
         $gather = array();
 
-        if ($xml === false || boolval($xml->error)) {
+        if ($xml === false || boolval($xml->error) || !isset($xml->achievements)) {
             $gather[] = null;
         } else {
             $count = 0;

@@ -19,9 +19,9 @@
 
             vm.passengers = [];
 
+            $scope.steamCompareStart = false;
             $scope.steamOrder = steamOrder;
             $scope.toggleGamer = toggleGamer;
-            $scope.toggleFilter = toggleFilter;
             $scope.getGamesFromGamer = getGamesFromGamer;
             $scope.compareGame = compareGame;
 
@@ -42,15 +42,13 @@
                     {name: 'melth', profile: 'profiles/76561198005875496', active: false},
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
-                $scope.filterSet = [
-                    {name: 'default', order: 'api', modus: 0},
-                    {name: 'name', order: 'name', modus: 0},
-                    {name: 'description', order: 'description', modus: 0},
-                    {name: 'unlock', order: 'unlock', modus: 0},
-                    {name: 'timestamp', order: 'stamp', modus: 1}
-                ];
                 $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
                 $scope.gamelist = $scope.games[0];
+
+                //steamService.testAnything()
+                //    .then(function (response) {
+                //        console.log(response);
+                //    });
             }
 
             function compareGame() {
@@ -58,6 +56,8 @@
                     profiles: [],
                     names: []
                 };
+
+                $scope.steamCompareStart = true;
 
                 for (var index in $scope.gamer) {
                     if ($scope.gamer[index].active) {
@@ -71,9 +71,9 @@
                         .then(function (response) {
                             var savingAchievement = 0;
 
+                            $scope.achievements = [];
+                            $scope.tableHeader = [];
                             if (response.data && response.data != '') {
-                                $scope.achievements = [];
-                                $scope.tableHeader = [];
                                 console.log(response.data);
 
                                 for (var i = 0, l = response.data.length; i < l; i++) { // i = count of gamer
@@ -97,6 +97,7 @@
                                                         name: response.data[i][j].name,
                                                         gamer: []
                                                     };
+                                                    $scope.achievements[j]['player' + i] = response.data[i][j].player;
                                                 }
                                             }
 
@@ -111,12 +112,14 @@
                                                     time: response.data[i][j].time,
                                                     unlock: response.data[i][j].unlock
                                                 };
+                                                $scope.achievements[j]['player' + i] = response.data[i][j].unlock;
                                             }
                                         }
                                     }
                                 }
-                                //toggleFilter('default');
+                                steamOrder('name');
                             }
+                            $scope.loadAchievement = ($scope.achievements.length);
                         });
 
                 }
@@ -137,8 +140,8 @@
             }
 
             function steamOrder(predicate) {
-                $scope.predicate = predicate;
                 $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+                $scope.predicate = predicate;
                 $scope.achievements = orderBy($scope.achievements, predicate, $scope.reverse);
             }
 
@@ -147,41 +150,44 @@
                 console.log(typ);
             }
 
-            function toggleFilter(filter) {
-                steamOrder(filter);
-                $scope.filterActive = filter;
-            }
-
             // later to be remove
             $scope.tests = [
-                {so: 4, weiter: [
+                {
+                    so: 4, weiter: [
                     {da: 5},
                     {da: 4},
                     {da: 3},
                     {da: 2},
                     {da: 1}
-                ]},
-                {so: 2, weiter: [
+                ]
+                },
+                {
+                    so: 2, weiter: [
                     {da: 1},
                     {da: 2},
                     {da: 3},
                     {da: 4},
                     {da: 5}
-                ]},
-                {so: 3, weiter: [
+                ]
+                },
+                {
+                    so: 3, weiter: [
                     {da: 1},
                     {da: 4},
                     {da: 2},
                     {da: 5},
                     {da: 3}
-                ]},
-                {so: 1, weiter: [
+                ]
+                },
+                {
+                    so: 1, weiter: [
                     {da: 3},
                     {da: 5},
                     {da: 2},
                     {da: 4},
                     {da: 1}
-                ]}
+                ]
+                }
             ];
         }
     }
