@@ -59,8 +59,8 @@
     <div data-ng-repeat="achievement in achievements" data-ng-if="loadAchievement">
         <div class="row">
             <div class="col-xs-2 col-md-1 achievement-image">
-                <img class="be" src="{{achievement.imageOpen}}">
-                <img class="fe" src="{{achievement.imageClosed}}">
+                <img class="be" data-ng-src="{{achievement.imageOpen}}">
+                <img class="fe" data-ng-src="{{achievement.imageClosed}}">
             </div>
             <div class="col-xs-5 col-md-6">
                 <h4>{{achievement.name}} <span glyphicon glyphicon-barcode title="{{achievement.api}}" aria-hidden="true"></span></h4>

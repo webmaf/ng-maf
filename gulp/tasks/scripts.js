@@ -35,7 +35,7 @@ module.exports = function (config) {
         ])
             .pipe(htmlFilter)
             .pipe(ngHtml2js({
-                moduleName: config.files.moduleName,
+                moduleName: config.moduleName,
                 declareModule: false
             }))
             .pipe(htmlFilter.restore)

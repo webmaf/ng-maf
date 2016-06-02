@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    //angular
-    //    .module('app.steam')
-    //    .directive('steam', steamDirective);
+    angular
+        .module('steam')
+        .directive('steam', steamDirective);
 
     function steamDirective(steamService) {
         return {
@@ -149,46 +149,6 @@
                 typ.active = !typ.active;
                 console.log(typ);
             }
-
-            // later to be remove
-            $scope.tests = [
-                {
-                    so: 4, weiter: [
-                    {da: 5},
-                    {da: 4},
-                    {da: 3},
-                    {da: 2},
-                    {da: 1}
-                ]
-                },
-                {
-                    so: 2, weiter: [
-                    {da: 1},
-                    {da: 2},
-                    {da: 3},
-                    {da: 4},
-                    {da: 5}
-                ]
-                },
-                {
-                    so: 3, weiter: [
-                    {da: 1},
-                    {da: 4},
-                    {da: 2},
-                    {da: 5},
-                    {da: 3}
-                ]
-                },
-                {
-                    so: 1, weiter: [
-                    {da: 3},
-                    {da: 5},
-                    {da: 2},
-                    {da: 4},
-                    {da: 1}
-                ]
-                }
-            ];
         }
     }
 }());
