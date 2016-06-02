@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular
-        .module('steam')
-        .factory('HttpConfigInterceptor', HttpConfigInterceptor)
-        .factory('steamService', steamService)
-        .config(configureModule);
+    //angular
+    //    .module('app.steam')
+    //    .factory('HttpConfigInterceptor', HttpConfigInterceptor)
+    //    .factory('steamService', steamService)
+    //    .config(configureModule);
 
     function steamService($http) {
         var service = {

@@ -2,6 +2,7 @@
 
 module.exports = {
     appName: 'ng-maf',
+    moduleName: 'app',
 
     indexHtml: 'index.html',
 
@@ -30,6 +31,7 @@ module.exports = {
         mockAllFiles: '**/*.mock.json',
         vendorJS: [
             'vendor/angular/angular.min.js',
+            'vendor/angular-route/angular-route.min.js',
             'vendor/jquery/dist/jquery.min.js',
             'vendor/bootstrap-sass/assets/javascripts/bootstrap.min.js',
             'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'

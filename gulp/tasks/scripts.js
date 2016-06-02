@@ -35,7 +35,7 @@ module.exports = function (config) {
         ])
             .pipe(htmlFilter)
             .pipe(ngHtml2js({
-                moduleName: 'steam',
+                moduleName: config.files.moduleName,
                 declareModule: false
             }))
             .pipe(htmlFilter.restore)

@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular
-        .module('steam')
-        .directive('steam', steamDirective);
+    //angular
+    //    .module('app.steam')
+    //    .directive('steam', steamDirective);
 
     function steamDirective(steamService) {
         return {
