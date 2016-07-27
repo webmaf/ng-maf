@@ -21,15 +21,18 @@
     function configureRoute($routeProvider) {
         console.log('daaa');
         $routeProvider
+            .when('/', {
+                templateUrl: 'src/view/welcome.html'
+            })
             .when('/steam', {
                 templateUrl: 'src/view/steam.html'
             })
-            .when('/:train', {
-                templateUrl: 'index.html',
-                controller: 'appCtrl'
+            .when('/one/:game/:test', {
+                templateUrl: 'src/view/one.html',
+                controller: 'oneCtrl'
             })
             .otherwise({
-                template: '<h1>Rappel Zappel im Karton</h1>'
+                redirectTo: '/'
             });
     }
 
@@ -47,8 +50,11 @@
 
     angular
         .module('one')
-        .controller('oneCtrl', function () {
+        .controller('oneCtrl', function ($scope, $routeParams) {
             console.log(1, 'oneCtrl');
+            $scope.model = {
+                train: $routeParams.game + '/' + $routeParams.test
+            }
         })
         .config(configureRoute)
         .config(function () {

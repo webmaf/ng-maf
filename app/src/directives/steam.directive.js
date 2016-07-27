@@ -49,6 +49,7 @@
                 //    .then(function (response) {
                 //        console.log(response);
                 //    });
+                //$('.bs-select').selectpicker('refresh');
             }
 
             function compareGame() {
