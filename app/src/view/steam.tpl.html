@@ -9,10 +9,10 @@
                 <div class="row well-sm">
                     <div class="col-xs-8">
                         <!--<span class="glyphicon glyphicon-tower" aria-hidden="true"></span>-->
-                        <em>{{games.length}}</em> games, last update: <em>{{times}}</em>
+                        <em><b>{{games.length}}</b></em> games, last update: <em>{{times}}</em>
                     </div>
                     <div class="col-xs-4 text-right">
-                        <a data-ng-click="getGamesFromGamer()">update gamelist</a>
+                        <a href="" data-ng-click="getGamesFromGamer()">update gamelist</a>
                     </div>
                 </div>
             </div>
@@ -27,29 +27,29 @@
             <div class="col-xs-2"><label>Spielerauswahl</label></div>
             <div class="col-xs-7 btn-toolbar">
                 <div class="btn-group">
-                    <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}}</button>
+                    <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="togglePlayer(typ)"> {{typ.name}}</button>
                 </div>
-                <button type="button" class="btn disabled">(max: 4)</button>
+                <button type="button" class="btn disabled">(max: {{playerMax}})</button>
             </div>
             <div class="col-xs-3">
-                <button data-ng-if="1" type="button" class="btn btn-block btn-primary" data-ng-click="compareGame()"> compareGame</button>
+                <button data-ng-if="1" type="button" class="btn btn-block btn-primary" data-ng-class="{'disabled' : playerCnt == 0 || steamCompareStatus == 'pending'}" data-ng-click="compareGame()"> compareGame</button>
             </div>
         </div>
     </div>
     <br>
     <div class="container">
-        <div class="row" data-ng-show="loadAchievement">
+        <div class="row" data-ng-show="loadedAchievement">
             <div class="col-xs-2 col-md-1">
                 <!--<button type="button" class="btn btn-default disabled">Sorting: </button>-->
                 <label>Sortierung</label>
             </div>
             <div class="col-xs-5 col-md-6">
-                <button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'name'}" data-ng-click="steamOrder('name')">Erfolgsbezeichnung <span class="badge">max: {{achievements.length}}</span></button>
+                <button type="button" class="btn btn-default" data-ng-class="{'btn-primary' : predicate == 'name'}" data-ng-click="steamOrder('name')"><span class="badge">{{achievements.length}}</span> &nbsp; Erfolge - Bezeichnung</button>
             </div>
             <div class="col-xs-5">
-                <div class="row" data-ng-show="loadAchievement">
+                <div class="row" data-ng-show="loadedAchievement">
                     <div class="col-xs-3 col-padding" data-ng-repeat="player in tableHeader">
-                        <button type="button" class="btn btn-default btn-block text-center" data-ng-class="{'btn-info' : predicate == 'player' + $index}" data-ng-click="steamOrder('player' + $index)">
+                        <button type="button" class="btn btn-default btn-block text-center" data-ng-class="{'btn-primary' : predicate == 'player' + $index}" data-ng-click="steamOrder('player' + $index)">
                             {{player.player}}<!-- <span class="caret"></span>-->
                         </button>
                         <div class="stats text-center text-nowrap">
@@ -64,7 +64,7 @@
     <br>
 </nav>
 <section class="achievements">
-    <div data-ng-repeat="achievement in achievements" data-ng-if="loadAchievement">
+    <div data-ng-repeat="achievement in achievements" data-ng-if="loadedAchievement">
         <div class="row">
             <div class="col-xs-2 col-md-1 achievement-image">
                 <img class="be" data-ng-src="{{achievement.imageOpen}}">
@@ -84,5 +84,6 @@
             </div>
         </div>
     </div>
-    <div data-ng-show="steamCompareStart && !loadAchievement">Keine Daten vorhanden</div>
+    <div data-ng-show="steamCompareStatus == 'response' && !loadedAchievement">Keine Daten vorhanden</div>
+    <div data-ng-show="steamCompareStatus == 'pending'">Daten werden geladen</div>
 </section>

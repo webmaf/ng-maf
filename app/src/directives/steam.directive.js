@@ -14,18 +14,21 @@
 
         function steamController($scope, $filter) {
             /* jshint validthis: true */
-            var vm = this;
-            var orderBy = $filter('orderBy');
+            var vm = this,
+                orderBy = $filter('orderBy');
 
             vm.passengers = [];
 
-            $scope.steamCompareStart = false;
+            $scope.steamCompareStatus = 'untouched';
             $scope.steamOrder = steamOrder;
-            $scope.toggleGamer = toggleGamer;
+            $scope.togglePlayer = togglePlayer;
             $scope.getGamesFromGamer = getGamesFromGamer;
             $scope.compareGame = compareGame;
             $scope.achievements = [];
             $scope.tableHeader = [];
+
+            $scope.playerMax = 4;
+            $scope.playerCnt = 0;
 
             activate();
 
@@ -40,7 +43,7 @@
                     {name: 'asmo', profile: 'profiles/76561197987497201', active: false},
                     {name: 'janleon', profile: 'profiles/76561197995374327', active: false},
                     {name: 'jessi', profile: 'profiles/76561197960362967', active: false},
-                    {name: 'maf', profile: 'profiles/76561197995754090', active: true},
+                    {name: 'maf', profile: 'profiles/76561197995754090', active: false},
                     {name: 'melth', profile: 'profiles/76561198005875496', active: false},
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
@@ -60,7 +63,11 @@
                     names: []
                 };
 
-                $scope.steamCompareStart = true;
+                if (!$scope.playerCnt || $scope.steamCompareStatus == 'pending') {
+                    return;
+                }
+
+                $scope.steamCompareStatus = 'pending';
                 $scope.tableHeader = [];
                 $scope.achievements = [];
 
@@ -110,13 +117,18 @@
                                                     unlock: response.data[i][j].unlock
                                                 };
                                                 $scope.achievements[j]['player' + i] = response.data[i][j].unlock;
+                                            } else {
+                                                $scope.achievements[j] = null;
                                             }
                                         }
                                     }
                                 }
+                                $scope.achievements = $scope.achievements.slice(1, $scope.achievements.length);
                                 steamOrder('name');
                             }
-                            $scope.loadAchievement = ($scope.achievements.length);
+                            $scope.loadedAchievement = ($scope.achievements.length);
+
+                            $scope.steamCompareStatus = 'response';
                         });
                 }
             }
@@ -145,8 +157,16 @@
                 $scope.achievements = orderBy($scope.achievements, predicate, $scope.reverse);
             }
 
-            function toggleGamer(typ) {
-                typ.active = !typ.active;
+            function togglePlayer(typ) {
+                if (typ.active || $scope.playerCnt < $scope.playerMax) {
+                    typ.active = !typ.active;
+
+                    if (typ.active) {
+                        $scope.playerCnt++;
+                    } else {
+                        $scope.playerCnt--;
+                    }
+                }
             }
         }
     }

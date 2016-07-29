@@ -2,6 +2,9 @@
 @import '../../../vendor/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '../../../vendor/bootstrap-select/sass/bootstrap-select';
 
+@import 'color';
+@import 'global';
+
 .compare-achievements {
     $shadow-color: rgba(0, 0, 0, .4);
 
@@ -67,6 +70,10 @@
 
     .btn:focus {
         outline: none;
+    }
+
+    .btn-on {
+        background-color: $primary-light;
     }
 
     .badge {
