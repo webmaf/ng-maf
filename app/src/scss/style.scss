@@ -54,7 +54,7 @@
 
     .col-padding {
         padding: 0 5px;
-        
+
         .stats {
             position: relative;
             top: 10px;
@@ -65,10 +65,11 @@
         padding: 6px;
     }
 
-    .badge-top {
-        //position: absolute;
-        //top: -10px;
-        //left: -10px;
+    .btn:focus {
+        outline: none;
+    }
+
+    .badge {
         font-weight: normal;
     }
 }

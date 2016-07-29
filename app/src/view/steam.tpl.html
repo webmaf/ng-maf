@@ -25,9 +25,11 @@
         <br>
         <div class="row">
             <div class="col-xs-2"><label>Spielerauswahl</label></div>
-            <div class="col-xs-7 btn-group">
-                <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}}</button>
-                <button type="button" class="btn btn-disable" data-ng-class="disable">(max: 4)</button>
+            <div class="col-xs-7 btn-toolbar">
+                <div class="btn-group">
+                    <button data-ng-repeat="typ in gamer" type="button" class="btn btn-default" data-ng-class="{'btn-primary' : typ.active}" data-ng-click="toggleGamer(typ)"> {{typ.name}}</button>
+                </div>
+                <button type="button" class="btn disabled">(max: 4)</button>
             </div>
             <div class="col-xs-3">
                 <button data-ng-if="1" type="button" class="btn btn-block btn-primary" data-ng-click="compareGame()"> compareGame</button>
@@ -35,10 +37,11 @@
         </div>
     </div>
     <br>
-    <div class="container sorter">
-        <div class="row">
+    <div class="container">
+        <div class="row" data-ng-show="loadAchievement">
             <div class="col-xs-2 col-md-1">
-                <button type="button" class="btn btn-default disabled">Sorting: </button>
+                <!--<button type="button" class="btn btn-default disabled">Sorting: </button>-->
+                <label>Sorting</label>
             </div>
             <div class="col-xs-5 col-md-6">
                 <button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'name'}" data-ng-click="steamOrder('name')">Erfolgsbezeichnung <span class="badge">max: {{achievements.length}}</span></button>
@@ -46,12 +49,11 @@
             <div class="col-xs-5">
                 <div class="row" data-ng-show="loadAchievement">
                     <div class="col-xs-3 col-padding" data-ng-repeat="player in tableHeader">
-                        <!--<button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'player' + $index}" data-ng-click="steamOrder('player' + $index)">{{player.player}} <span class="badge">{{player.count}}</span></button>-->
                         <button type="button" class="btn btn-default btn-block text-center" data-ng-class="{'btn-info' : predicate == 'player' + $index}" data-ng-click="steamOrder('player' + $index)">
-                            {{player.player}}
+                            {{player.player}}<!-- <span class="caret"></span>-->
                         </button>
                         <div class="stats text-center text-nowrap">
-                            <span class="badge badge-top">{{player.count}}</span> =
+                            <span class="badge">{{player.count}}</span> =
                             <span>{{player.count / achievements.length * 100 | number: 0}}%</span>
                         </div>
                     </div>

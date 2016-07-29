@@ -19,7 +19,6 @@
     // ====================================================================================
 
     function configureRoute($routeProvider) {
-        console.log('daaa');
         $routeProvider
             .when('/', {
                 templateUrl: 'src/view/welcome.html'
