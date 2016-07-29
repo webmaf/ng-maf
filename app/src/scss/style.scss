@@ -10,6 +10,10 @@
         width: 100% !important;
     }
 
+    .fixed-second {
+        top: 50px;
+    }
+
     .achievement-image {
         height: 94px;
 
@@ -27,7 +31,7 @@
     }
 
     .achievements {
-        margin-top: 242px;
+        margin-top: 290px;
 
         .label {
             font-weight: normal;
@@ -50,6 +54,11 @@
 
     .col-padding {
         padding: 0 5px;
+        
+        .stats {
+            position: relative;
+            top: 10px;
+        }
     }
 
     .btn-block.text-center {
