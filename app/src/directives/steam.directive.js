@@ -45,12 +45,8 @@
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
                 $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
+                $scope.times = (localStorage.webmafTimes && localStorage.webmafTimes.length > 0) ? JSON.parse(localStorage.webmafTimes) : 'asa';
                 $scope.gamelist = $scope.games[0];
-
-                //steamService.testAnything()
-                //    .then(function (response) {
-                //        console.log(response);
-                //    });
 
                 // select-picker initializing
                 angular.element(document).ready(function () {
@@ -81,13 +77,13 @@
                             var saveOnceAchievements = 0;
 
                             if (response.data && response.data !== '') {
-                                console.log(response.data);
 
                                 for (var i = 0, l = response.data.length; i < l; i++) { // i = count of gamer
                                     $scope.tableHeader[i] = {
                                         player: response.data[i][0].player,
                                         count: response.data[i][0].count
                                     };
+
                                     for (var j = 0, k = response.data[i].length; j < k; j++) { // j = count of achievements
                                         if (response.data[i][0].hasOwnProperty('error')) {
                                             saveOnceAchievements++;
@@ -118,8 +114,6 @@
                                         }
                                     }
                                 }
-                                console.log('$scope.tableHeader', $scope.tableHeader);
-                                //console.log($scope.achievements);
                                 steamOrder('name');
                             }
                             $scope.loadAchievement = ($scope.achievements.length);
@@ -128,14 +122,18 @@
             }
 
             function getGamesFromGamer() {
-                if (!localStorage.webmafGames || localStorage.webmafGames && localStorage.webmafGames.length === 0) {
+                if (!localStorage.webmafGames || localStorage.webmafGames && localStorage.webmafGames.length !== 0) {
                     steamService.getSteamGames($scope.gamer[3].profile)
                         .then(function (response) {
-                            console.log(response);
+                            var storage = {};
+
                             if (response.data && response.data !== '') {
-                                $scope.games = response.data;
-                                localStorage.setItem('webmafGames', JSON.stringify($scope.games));
+                                $scope.games = storage.games = response.data;
+                                $scope.times = storage.times = steamService.localTime();
                                 $scope.gamelist = $scope.games[0];
+
+                                localStorage.setItem('webmafGames', JSON.stringify(storage.games));
+                                localStorage.setItem('webmafTimes', JSON.stringify(storage.times));
                             }
                         });
                 }
@@ -149,7 +147,6 @@
 
             function toggleGamer(typ) {
                 typ.active = !typ.active;
-                console.log(typ);
             }
         }
     }

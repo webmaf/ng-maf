@@ -9,7 +9,7 @@
                 <div class="row well-sm">
                     <div class="col-xs-8">
                         <!--<span class="glyphicon glyphicon-tower" aria-hidden="true"></span>-->
-                        {{games.length}} games, last update: 27.05.2015
+                        <em>{{games.length}}</em> games, last update: <em>{{times}}</em>
                     </div>
                     <div class="col-xs-4 text-right">
                         <a data-ng-click="getGamesFromGamer()">update gamelist</a>
@@ -41,7 +41,7 @@
         <div class="row" data-ng-show="loadAchievement">
             <div class="col-xs-2 col-md-1">
                 <!--<button type="button" class="btn btn-default disabled">Sorting: </button>-->
-                <label>Sorting</label>
+                <label>Sortierung</label>
             </div>
             <div class="col-xs-5 col-md-6">
                 <button type="button" class="btn btn-default" data-ng-class="{'btn-info' : predicate == 'name'}" data-ng-click="steamOrder('name')">Erfolgsbezeichnung <span class="badge">max: {{achievements.length}}</span></button>

@@ -11,6 +11,7 @@
         var service = {
             getSteamXML: getSteamXML,
             getSteamGames: getSteamGames,
+            localTime: localtime,
             testAnything: testAnything
         };
 
@@ -23,8 +24,6 @@
             var gID = game || '377160',
                 names = player.names || ['maf'],
                 profiles = player.profiles || ['id/webmaf'];
-
-
 
             return $http({
                 url: 'php/steam.php',
@@ -43,6 +42,8 @@
 
             url = 'http://steamcommunity.com/' + pID + '/games?tab=all&xml=1';
 
+            console.log(url);
+
             return $http({
                 url: 'php/steamGames.php',
                 method: 'POST',
@@ -50,6 +51,15 @@
                     url: url
                 }
             });
+        }
+
+        function localtime() {
+            var now = new Date(),
+                month = now.getMonth() + 1, // return 0-11
+                date = [now.getDate(), (month < 10) ? '0' + month.toString() : month, now.getFullYear()],
+                time = [now.getHours(), now.getMinutes()];
+
+            return date.join('.') + ' ' + time.join(':');
         }
 
         function testAnything() {
