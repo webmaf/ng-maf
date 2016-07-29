@@ -47,4 +47,19 @@
     .options {
         padding: 0 20px;
     }
+
+    .col-padding {
+        padding: 0 5px;
+    }
+
+    .btn-block.text-center {
+        padding: 6px;
+    }
+
+    .badge-top {
+        //position: absolute;
+        //top: -10px;
+        //left: -10px;
+        font-weight: normal;
+    }
 }

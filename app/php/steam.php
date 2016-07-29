@@ -16,11 +16,16 @@ if (count($profiles) > 0) {
         $url = 'http://steamcommunity.com/' . $profiles[$i] . '/stats/' . $game . '/?xml=1&l=german&tab=achievements';
         $xml = @simplexml_load_file($url);
         $gather = array();
+        $count = 0;
 
         if ($xml === false || boolval($xml->error) || !isset($xml->achievements)) {
-            $gather[] = null;
+            $gather[] = array(
+                'error' => true,
+                'api' => 'countOfUnlock',
+                'player' => $names[$i],
+                'count' => $count
+            );
         } else {
-            $count = 0;
             foreach ($xml->achievements->achievement as $achievement) {
                 $gather[] = array(
                     'api' => (string)$achievement->apiname,
