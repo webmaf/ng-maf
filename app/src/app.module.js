@@ -18,7 +18,7 @@
     // ----- functions
     // ====================================================================================
 
-    function configureRoute($routeProvider) {
+    function configureRoute($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'src/view/welcome.html'
@@ -33,6 +33,9 @@
             .otherwise({
                 redirectTo: '/'
             });
+
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
     }
 
     // TEST TEST TEST DELETE
@@ -53,7 +56,7 @@
             console.log(1, 'oneCtrl');
             $scope.model = {
                 train: $routeParams.game + '/' + $routeParams.test
-            }
+            };
         })
         .config(configureRoute)
         .config(function () {

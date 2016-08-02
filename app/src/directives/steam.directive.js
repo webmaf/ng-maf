@@ -8,7 +8,7 @@
     function steamDirective(steamService) {
         return {
             restrict: 'A',
-            templateUrl: 'app/src/view/steam.tpl.html',
+            templateUrl: '/src/view/steam.tpl.html',
             controller: steamController
         };
 

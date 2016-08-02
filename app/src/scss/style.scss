@@ -4,79 +4,8 @@
 
 @import 'color';
 @import 'global';
+@import 'steam';
 
-.compare-achievements {
-    $shadow-color: rgba(0, 0, 0, .4);
-
-    .selectpicker.fullsize,
-    .bootstrap-select.fullsize {
-        width: 100% !important;
-    }
-
-    .fixed-second {
-        top: 50px;
-    }
-
-    .achievement-image {
-        height: 94px;
-
-        img {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-
-            &.fe {
-                top: 20px;
-                left: 20px;
-                @include box-shadow($shadow-color 0 0 5px 2px);
-            }
-        }
-    }
-
-    .achievements {
-        margin-top: 290px;
-
-        .label {
-            font-weight: normal;
-            margin-top: 15px;
-            display: inline-block;
-        }
-    }
-
-    .navbar {
-        @include box-shadow($shadow-color 0 0 10px 2px);
-
-        label {
-            margin-top: 6px;
-        }
-    }
-
-    .options {
-        padding: 0 20px;
-    }
-
-    .col-padding {
-        padding: 0 5px;
-
-        .stats {
-            position: relative;
-            top: 10px;
-        }
-    }
-
-    .btn-block.text-center {
-        padding: 6px;
-    }
-
-    .btn:focus {
-        outline: none;
-    }
-
-    .btn-on {
-        background-color: $primary-light;
-    }
-
-    .badge {
-        font-weight: normal;
-    }
+.navbar-next {
+    margin-top: 70px;
 }
