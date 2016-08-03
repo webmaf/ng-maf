@@ -8,16 +8,7 @@
         ])
         .controller('routeController', routeController)
         .config(configureRoute);
-    /*
-    //TODO ALLES was zu deployen ist:
-    - in deploy ordner schieben
-    - php ohne old
-    - views maybe
-    - index.html und .htaccess nach deploy
-    - htdocs auf app/deploy setzen
 
-
-    */
     // ----------- if this missing than:
     angular
         .module('steam', []);
