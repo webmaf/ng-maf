@@ -25,11 +25,11 @@ module.exports = function (config) {
     });
 
     gulp.task('scripts', function () {
-        var htmlFilter = filter(config.files.htmlTemplates, {restore: true});
+        var htmlFilter = filter(config.files.renderTemplates, {restore: true});
 
         return gulp.src([
             config.files.renderJS,
-            config.files.htmlTemplates,
+            config.files.renderTemplates,
             '!**/*.spec.js',
             '!**/index.html'
         ])

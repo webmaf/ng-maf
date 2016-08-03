@@ -13,7 +13,7 @@ module.exports = function (config) {
     });
 
     gulp.task('watchHTML', function () {
-        return gulp.watch([config.files.htmlFiles, config.files.htmlTemplates], ['scripts']);
+        return gulp.watch([config.files.htmlFiles, config.files.htmlTemplates], ['scripts', 'copyAllHTML']);
     });
 
     gulp.task('watch', ['watchStyles', 'watchJs', 'watchHTML']);

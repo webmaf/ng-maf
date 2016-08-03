@@ -14,6 +14,13 @@ module.exports = {
     },
 
     files: {
+        system: [
+            'app/.htaccess'
+        ],
+        php: [
+            'app/php/**/*.php',
+            '!app/php/old/**/*.php'
+        ],
         js: [
             'app/src/**/*.js',
             'app/scripts/**/*.js',
@@ -27,7 +34,7 @@ module.exports = {
         ],
         scss: 'app/src/**/*.scss',
         htmlFiles: 'app/*.html',
-        htmlTemplates: '**/*.tpl.html',
+        htmlTemplates: 'app/src/view/*.tpl.html',
         mockAllFiles: '**/*.mock.json',
         vendorJS: [
             'vendor/angular/angular.min.js',
@@ -37,6 +44,7 @@ module.exports = {
             'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'
         ],
         renderJS: 'app/src/**/*.js',
+        renderTemplates: '**/*.tpl.html',
         specs: 'app/src/**/*.spec.js',
         assets: [
             'app/assets/**/*.*'

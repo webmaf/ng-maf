@@ -14,11 +14,13 @@ wrench.readdirSyncRecursive('./gulp/tasks/').filter(function (file) {
 
 util.env.type = 'dev';
 
+gulp.task('copyAllHTML', ['copyHTML', 'copyTemplates']);
+
 gulp.task('local', function () {
     runSequence(
         ['clean'],
         ['lintScripts', 'lintStylesDev', 'karmaDev'],
-        ['scripts', 'sass', 'copyConfigJS', 'copyAssets', 'copyAllHTML', 'copyVendorJS'],
+        ['scripts', 'sass', 'copyConfigJS', 'copyPHP', 'copyAssets', 'copySystem', 'copyAllHTML', 'copyVendorJS'],
         //['browserSyncLocal'],
         ['watch']
     );

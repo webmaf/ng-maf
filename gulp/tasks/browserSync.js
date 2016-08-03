@@ -9,7 +9,7 @@ module.exports = function (config) {
             'app/src/*.js',
             '!app/*.spec.js',
             '!app/*.mock.json',
-            config.dir.dist + '*.css'
+            config.dir.deploy + '*.css'
         ];
 
         browserSync({

@@ -2,14 +2,22 @@
     'use strict';
 
     angular
-        //.module('steam', ['ngRoute']);
         .module('app', [
             'steam',
             'ngRoute'
         ])
-
+        .controller('routeController', routeController)
         .config(configureRoute);
+    /*
+    //TODO ALLES was zu deployen ist:
+    - in deploy ordner schieben
+    - php ohne old
+    - views maybe
+    - index.html und .htaccess nach deploy
+    - htdocs auf app/deploy setzen
 
+
+    */
     // ----------- if this missing than:
     angular
         .module('steam', []);
@@ -18,13 +26,21 @@
     // ----- functions
     // ====================================================================================
 
+    function routeController($scope, $routeParams) {
+        $scope.param = $routeParams.param;
+    }
+
     function configureRoute($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'src/view/welcome.html'
+                templateUrl: 'welcome.html'
             })
             .when('/steam', {
-                templateUrl: 'src/view/steam.html'
+                templateUrl: 'steam.html'
+            })
+            .when('/steam/:achievements', {
+                templateUrl: 'steam.html',
+                controller: 'routeController'
             })
             .when('/one/:game/:test', {
                 templateUrl: 'src/view/one.html',
@@ -37,40 +53,4 @@
         // use the HTML5 History API
         $locationProvider.html5Mode(true);
     }
-
-    // TEST TEST TEST DELETE
-    // ====================================================================================
-
-    angular
-        .module('one', [
-            'one.two',
-            'ngRoute'
-        ]);
-
-    angular
-        .module('one.two', []);
-
-    angular
-        .module('one')
-        .controller('oneCtrl', function ($scope, $routeParams) {
-            console.log(1, 'oneCtrl');
-            $scope.model = {
-                train: $routeParams.game + '/' + $routeParams.test
-            };
-        })
-        .config(configureRoute)
-        .config(function () {
-            console.log(1, 'oneConfig');
-        });
-
-    angular
-        .module('one.two')
-        .controller('twoCtrl', function () {
-            console.log(2, 'twoCtrl');
-        })
-        .config(function () {
-            console.log(2, 'twoConfig');
-        });
-
-    // ====================================================================================
 }());
