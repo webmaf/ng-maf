@@ -116,7 +116,7 @@
                                                     time: response.data[i][j].time,
                                                     unlock: response.data[i][j].unlock
                                                 };
-                                                $scope.achievements[j]['player' + i] = response.data[i][j].unlock;
+                                                $scope.achievements[j]['player' + i] = response.data[i][j].stamp;
                                             } else {
                                                 $scope.achievements[j] = null;
                                             }
@@ -127,7 +127,6 @@
                                 steamOrder('name');
                             }
                             $scope.loadedAchievement = ($scope.achievements.length);
-
                             $scope.steamCompareStatus = 'response';
                         });
                 }
