@@ -20,7 +20,7 @@ gulp.task('local', function () {
     runSequence(
         ['clean'],
         ['lintScripts', 'lintStylesDev', 'karmaDev'],
-        ['scripts', 'sass', 'copyConfigJS', 'copyPHP', 'copyAssets', 'copySystem', 'copyAllHTML', 'copyVendorJS'],
+        ['scripts', 'sass', 'copyConfigJS', 'copyPHP', /*'copyAssets', 'copyVendorFonts', */'copySystem', 'copyAllHTML', 'copyVendorJS'],
         //['browserSyncLocal'],
         ['watch']
     );

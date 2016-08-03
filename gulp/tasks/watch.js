@@ -16,5 +16,9 @@ module.exports = function (config) {
         return gulp.watch([config.files.htmlFiles, config.files.htmlTemplates], ['scripts', 'copyAllHTML']);
     });
 
-    gulp.task('watch', ['watchStyles', 'watchJs', 'watchHTML']);
+    gulp.task('watchPHP', function () {
+        return gulp.watch([config.files.php], ['copyPHP']);
+    });
+
+    gulp.task('watch', ['watchStyles', 'watchJs', 'watchHTML', 'watchPHP']);
 };

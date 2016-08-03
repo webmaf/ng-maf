@@ -77,8 +77,14 @@
             <div class="col-xs-5">
                 <div class="row">
                     <div class="col-xs-3 col-padding text-center" data-ng-repeat="player in achievement.gamer">
-                        <span class="label label-success" data-ng-show="{{player.unlock}}">{{player.time}}</span>
-                        <span class="label label-danger" data-ng-hide="{{player.unlock}}">not finish</span>
+                        <!--<span class="label label-success" data-ng-show="{{player.unlock}}">{{player.time}}</span>-->
+                        <div class="label label-success" data-ng-show="{{player.unlock}}">
+                            <span class="date-d">{{player.time[0]}}</span>.
+                            <span class="date-m">{{player.time[1]}}</span>.
+                            <br>
+                            <span class="date-y">{{player.time[2]}}</span>
+                        </div>
+                        <span class="label label-info" data-ng-hide="{{player.unlock}}">not finish</span>
                     </div>
                 </div>
             </div>

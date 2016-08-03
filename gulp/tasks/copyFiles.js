@@ -36,6 +36,11 @@ module.exports = function (config) {
             .pipe(gulp.dest(config.dir.dist));
     });
 
+    gulp.task('copyVendorFonts', function () {
+        return gulp.src(config.files.vendorFonts)
+            .pipe(gulp.dest(config.dir.dist));
+    });
+
     gulp.task('copyAssets', function () {
         return gulp.src(config.files.assets)
             .pipe(gulp.dest(config.dir.dist + '/assets/'));

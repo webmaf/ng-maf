@@ -43,6 +43,9 @@ module.exports = {
             'vendor/bootstrap-sass/assets/javascripts/bootstrap.min.js',
             'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'
         ],
+        vendorFonts: [
+            'vendor/bootstrap-sass/assets/fonts/**/*'
+        ],
         renderJS: 'app/src/**/*.js',
         renderTemplates: '**/*.tpl.html',
         specs: 'app/src/**/*.spec.js',

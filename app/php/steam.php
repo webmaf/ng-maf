@@ -24,13 +24,23 @@ if (count($profiles) > 0) {
             );
         } else {
             foreach ($xml->achievements->achievement as $achievement) {
+                if ((int)$achievement['closed']) {
+                    $date = array(
+                        date('d', (float)$achievement->unlockTimestamp),
+                        date('m', (float)$achievement->unlockTimestamp),
+                        date('Y', (float)$achievement->unlockTimestamp),
+                        date('y', (float)$achievement->unlockTimestamp),
+                    );
+                } else {
+                    $date = null;
+                }
                 $gather[] = array(
                     'api' => (string)$achievement->apiname,
                     'name' => (string)$achievement->name,
                     'description' => (string)$achievement->description,
                     'unlock' => (int)$achievement['closed'],
                     'stamp' => (float)$achievement->unlockTimestamp,
-                    'time' => (int)$achievement['closed'] ? date('d-m-y', (float)$achievement->unlockTimestamp) : '',
+                    'time' => $date,
                     'imageClosed' => (string)$achievement->iconClosed,
                     'imageOpen' => (string)$achievement->iconOpen
                 );

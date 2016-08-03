@@ -30,9 +30,15 @@
         margin-top: 290px;
 
         .label {
+            color: $black;
             font-weight: normal;
             margin-top: 15px;
+            font-size: 100%;
             display: inline-block;
+
+            &.label-info {
+                margin-top: 25px;
+            }
         }
     }
 
@@ -68,5 +74,13 @@
 
     .badge {
         font-weight: normal;
+    }
+
+    .date-d {
+        font-size: 1.4em;
+    }
+
+    .date-m {
+        font-size: 1.2em;
     }
 }
