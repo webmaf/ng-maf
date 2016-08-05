@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 
 module.exports = function (config) {
     gulp.task('watchStyles', ['sass'], function () {
-        return gulp.watch([config.files.scss], ['lintStylesDev', 'sass']);
+        return gulp.watch([config.files.scss], ['sass']);
     });
 
     gulp.task('watchJs', function () {
