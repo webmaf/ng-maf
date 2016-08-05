@@ -2,30 +2,38 @@
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 $url = 'http://steamcommunity.com/id/disable-xml/games?tab=all&xml=1';
-$url = $request->url;
+$player = $request->player;
 
 $xml = @simplexml_load_file($url);
 //$xml = simplexml_load_string($xml);
 
-$gather = array();
+$output = array();
 
-if (!boolval($xml->error)) {
-    foreach ($xml->games->game as $game) {
-        if ((string)$game->globalStatsLink) {
-            $gather[] = array(
-                'api' => (float)$game->appID,
-                'achievement' => str_replace(array('http://steamcommunity.com/stats/', '/achievements/'), '', (string)$game->globalStatsLink),
-                'name' => (string)$game->name,
-                'logo' => (string)$game->logo,
-                'storeLink' => (string)$game->storeLink,
-                'globalStatsLink' => (string)$game->globalStatsLink
-            );
+
+if (count($player) > 0) {
+    for ($i = 0; $i < count($player); $i++) {
+        $url = 'http://steamcommunity.com/' . $player[$i]->profile . '/games?tab=all&xml=1';
+        $xml = @simplexml_load_file($url);
+
+        if (!boolval($xml->error)) {
+            foreach ($xml->games->game as $game) {
+                if ((string)$game->globalStatsLink) {
+                    $output[] = array(
+                        'api' => (float)$game->appID,
+                        'achievement' => str_replace(array('http://steamcommunity.com/stats/', '/achievements/'), '', (string)$game->globalStatsLink),
+                        'name' => (string)$game->name,
+                        'logo' => (string)$game->logo,
+                        'storeLink' => (string)$game->storeLink,
+                        'globalStatsLink' => (string)$game->globalStatsLink
+                    );
+                }
+            }
         }
     }
-} else {
-    $gather[] = null;
 }
 
-//echo '<pre>'; print_r($gather);
-echo json_encode($gather);
+$output = array_map("unserialize", array_unique(array_map("serialize", $output)));
+
+//echo '<pre>'; print_r($output);
+echo json_encode($output);
 ?>

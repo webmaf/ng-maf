@@ -26,6 +26,7 @@
             $scope.compareGame = compareGame;
             $scope.achievements = [];
             $scope.tableHeader = [];
+            $scope.loading = {};
 
             $scope.playerMax = 4;
             $scope.playerCnt = 0;
@@ -48,7 +49,7 @@
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
                 $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
-                $scope.times = (localStorage.webmafTimes && localStorage.webmafTimes.length > 0) ? JSON.parse(localStorage.webmafTimes) : 'asa';
+                $scope.times = (localStorage.webmafTimes && localStorage.webmafTimes.length > 0) ? JSON.parse(localStorage.webmafTimes) : '';
                 $scope.gamelist = $scope.games[0];
 
                 // select-picker initializing
@@ -134,17 +135,26 @@
 
             function getGamesFromGamer() {
                 if (!localStorage.webmafGames || localStorage.webmafGames && localStorage.webmafGames.length !== 0) {
-                    steamService.getSteamGames($scope.gamer[3].profile)
+                    var start = new Date().getTime(),
+                        end = 0;
+
+                    $scope.loading.gamelist = true;
+
+                    steamService.getSteamGames($scope.gamer)
                         .then(function (response) {
-                            var storage = {};
+                            $scope.loading.gamelist = false;
+                            end = new Date().getTime();
 
                             if (response.data && response.data !== '') {
-                                $scope.games = storage.games = response.data;
-                                $scope.times = storage.times = steamService.localTime();
+                                $scope.games = response.data;
+                                $scope.times = {
+                                    times: steamService.localTime(),
+                                    delay: end - start
+                                };
                                 $scope.gamelist = $scope.games[0];
 
-                                localStorage.setItem('webmafGames', JSON.stringify(storage.games));
-                                localStorage.setItem('webmafTimes', JSON.stringify(storage.times));
+                                localStorage.setItem('webmafGames', JSON.stringify($scope.games));
+                                localStorage.setItem('webmafTimes', JSON.stringify($scope.times));
                             }
                         });
                 }

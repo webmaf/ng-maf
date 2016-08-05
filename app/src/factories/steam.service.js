@@ -36,28 +36,30 @@
             });
         }
 
-        function getSteamGames(profile) {
-            var url,
-                pID = profile || 'id/webmaf';
-
-            url = 'http://steamcommunity.com/' + pID + '/games?tab=all&xml=1';
-
-            console.log(url);
-
+        function getSteamGames(player) {
             return $http({
                 url: 'php/steamGames.php',
                 method: 'POST',
                 data: {
-                    url: url
+                    player: player
                 }
             });
         }
 
         function localtime() {
             var now = new Date(),
-                month = now.getMonth() + 1, // return 0-11
-                date = [now.getDate(), (month < 10) ? '0' + month.toString() : month, now.getFullYear()],
-                time = [now.getHours(), now.getMinutes()];
+                day = now.getDate(),// return 1-31,
+                month = now.getMonth() + 1,// return 0-11,
+                min = now.getMinutes() + 1,// return 0-59,
+                date = [
+                    (day < 10) ? '0' + day.toString() : day,
+                    (month < 10) ? '0' + month.toString() : month,
+                    now.getFullYear()
+                ],
+                time = [
+                    now.getHours(),
+                    (min < 10) ? '0' + min.toString() : min
+                ];
 
             return date.join('.') + ' ' + time.join(':');
         }
