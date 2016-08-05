@@ -12,7 +12,7 @@
             controller: steamController
         };
 
-        function steamController($scope, $filter) {
+        function steamController($scope, $filter, $timeout) {
             /* jshint validthis: true */
             var vm = this,
                 orderBy = $filter('orderBy');
@@ -157,6 +157,10 @@
 
                                 localStorage.setItem('webmafGames', JSON.stringify($scope.games));
                                 localStorage.setItem('webmafTimes', JSON.stringify($scope.times));
+
+                                $timeout(function() {
+                                    $('.selectpicker').selectpicker('refresh');
+                                }, 100);
                             }
                         });
                 }
