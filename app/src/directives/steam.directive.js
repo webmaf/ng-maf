@@ -49,6 +49,7 @@
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
                 $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
+                $scope.gamesLength = Object.keys($scope.games).length;
                 $scope.times = (localStorage.webmafTimes && localStorage.webmafTimes.length > 0) ? JSON.parse(localStorage.webmafTimes) : '';
                 $scope.gamelist = $scope.games[0];
 
@@ -147,6 +148,7 @@
 
                             if (response.data && response.data !== '') {
                                 $scope.games = response.data;
+                                $scope.gamesLength = Object.keys($scope.games).length;
                                 $scope.times = {
                                     times: steamService.localTime(),
                                     delay: end - start
