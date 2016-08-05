@@ -39,11 +39,8 @@
     <br>
     <div class="container">
         <div class="row" data-ng-show="loadedAchievement">
-            <div class="col-xs-2 col-md-1">
-                <!--<button type="button" class="btn btn-default disabled">Sorting: </button>-->
-                <label>Sortierung</label>
-            </div>
-            <div class="col-xs-5 col-md-6">
+            <label class="sort-label">Sortierung</label>
+            <div class="col-xs-5 col-md-6 col-xs-offset-2 col-md-offset-1">
                 <button type="button" class="btn btn-default" data-ng-class="{'btn-primary' : predicate == 'name'}" data-ng-click="steamOrder('name')"><span class="badge">{{achievements.length}}</span> &nbsp; Erfolge - Bezeichnung</button>
             </div>
             <div class="col-xs-5">
@@ -78,13 +75,13 @@
                 <div class="row">
                     <div class="col-xs-3 col-padding text-center" data-ng-repeat="player in achievement.gamer">
                         <!--<span class="label label-success" data-ng-show="{{player.unlock}}">{{player.time}}</span>-->
-                        <div class="label label-success" data-ng-show="{{player.unlock}}">
+                        <div class="label not-open" data-ng-show="{{player.unlock}}">
                             <span class="date-d">{{player.time[0]}}</span>.
                             <span class="date-m">{{player.time[1]}}</span>.
                             <br>
                             <span class="date-y">{{player.time[2]}}</span>
                         </div>
-                        <span class="label label-info" data-ng-hide="{{player.unlock}}">not finish</span>
+                        <span class="label not-done" data-ng-hide="{{player.unlock}}">not finish</span>
                     </div>
                 </div>
             </div>

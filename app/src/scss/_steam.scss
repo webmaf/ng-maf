@@ -27,17 +27,35 @@
     }
 
     .achievements {
-        margin-top: 290px;
+        margin-top: 240px;
+
+        > div {
+            > .row {
+                border-bottom: 1px solid $color-grey-50;
+            }
+
+            &:nth-child(odd) > .row {
+                background-color: $color-grey-13;
+            }
+
+            &:nth-child(even) > .row {
+                background-color: $color-grey-08;
+            }
+        }
 
         .label {
-            color: $black;
+            color: $color-black;
             font-weight: normal;
-            margin-top: 15px;
+            margin-top: 27px;
             font-size: 100%;
             display: inline-block;
 
-            &.label-info {
-                margin-top: 25px;
+            &.not-open {
+                background-color: $color-green;
+            }
+
+            &.not-done {
+                margin-top: 37px;
             }
         }
     }
@@ -49,6 +67,11 @@
         label {
             margin-top: 6px;
         }
+    }
+
+    .sort-label {
+        position: absolute;
+        left: 20px;
     }
 
     .options {
