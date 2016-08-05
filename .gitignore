@@ -22,3 +22,6 @@ vendor
 Gemfile.lock
 deploy
 dist
+
+# ng-maf
+app/dist/
