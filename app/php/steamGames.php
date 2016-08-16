@@ -34,6 +34,12 @@ if (count($player) > 0) {
 
 $output = array_map("unserialize", array_unique(array_map("serialize", $output)));
 
+$return = array(
+    $output,
+    date('d.m.y H:i')
+);
+
 //echo '<pre>'; print_r($output);
-echo json_encode($output);
+file_put_contents('test.json', json_encode($return));
+echo json_encode($return);
 ?>

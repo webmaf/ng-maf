@@ -12,6 +12,7 @@
             getSteamXML: getSteamXML,
             getSteamGames: getSteamGames,
             localTime: localtime,
+            loadGames: loadGames,
             testAnything: testAnything
         };
 
@@ -26,7 +27,7 @@
                 profiles = player.profiles || ['id/webmaf'];
 
             return $http({
-                url: 'php/steam.php',
+                url: 'php/steamCompare.php',
                 method: 'POST',
                 data: {
                     game: gID,
@@ -66,6 +67,15 @@
 
         function testAnything() {
             var url = 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=292030&key=6EE54A74BC03B9E91F9E67F903DAF983&steamid=76561197995754090&l=german';
+
+            return $http({
+                url: url,
+                method: 'POST'
+            });
+        }
+
+        function loadGames() {
+            var url = 'php/test.json';
 
             return $http({
                 url: url,

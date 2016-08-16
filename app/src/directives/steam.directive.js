@@ -48,15 +48,33 @@
                     {name: 'melth', profile: 'profiles/76561198005875496', active: false},
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
-                $scope.games = (localStorage.webmafGames && localStorage.webmafGames.length > 0) ? JSON.parse(localStorage.webmafGames) : [];
-                $scope.gamesLength = Object.keys($scope.games).length;
-                $scope.times = (localStorage.webmafTimes && localStorage.webmafTimes.length > 0) ? JSON.parse(localStorage.webmafTimes) : '';
-                $scope.gamelist = $scope.games[0];
+
+                readLocalStorage();
 
                 // select-picker initializing
                 angular.element(document).ready(function () {
                     $('.selectpicker').selectpicker('refresh');
                 });
+            }
+
+            function readLocalStorage() {
+                if (localStorage.webmafGames && localStorage.webmafGames.length > 0) {
+                    $scope.games = JSON.parse(localStorage.webmafGames);
+                    $scope.times = JSON.parse(localStorage.webmafTimes);
+                    $scope.gamesLength = Object.keys($scope.games).length;
+                    $scope.gamelist = $scope.games[0];
+                } else {
+                    steamService.loadGames()
+                        .then(function (response) {
+                            $scope.games = response.data[0] || [];
+                            $scope.times = {
+                                times: response.data[1] || '',
+                                delay: 0
+                            };
+                            $scope.gamesLength = Object.keys($scope.games).length;
+                            $scope.gamelist = $scope.games[0];
+                        });
+                }
             }
 
             function compareGame() {
@@ -147,10 +165,10 @@
                             end = new Date().getTime();
 
                             if (response.data && response.data !== '') {
-                                $scope.games = response.data;
+                                $scope.games = response.data[0];
                                 $scope.gamesLength = Object.keys($scope.games).length;
                                 $scope.times = {
-                                    times: steamService.localTime(),
+                                    times: response.data[1],
                                     delay: end - start
                                 };
                                 $scope.gamelist = $scope.games[0];
@@ -158,7 +176,7 @@
                                 localStorage.setItem('webmafGames', JSON.stringify($scope.games));
                                 localStorage.setItem('webmafTimes', JSON.stringify($scope.times));
 
-                                $timeout(function() {
+                                $timeout(function () {
                                     $('.selectpicker').selectpicker('refresh');
                                 }, 100);
                             }
