@@ -49,20 +49,15 @@
                     {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
 
-                readLocalStorage();
-
-                // select-picker initializing
-                angular.element(document).ready(function () {
-                    $('.selectpicker').selectpicker('refresh');
-                });
-            }
-
-            function readLocalStorage() {
                 if (localStorage.webmafGames && localStorage.webmafGames.length > 0) {
                     $scope.games = JSON.parse(localStorage.webmafGames);
                     $scope.times = JSON.parse(localStorage.webmafTimes);
                     $scope.gamesLength = Object.keys($scope.games).length;
                     $scope.gamelist = $scope.games[0];
+
+                    angular.element(document).ready(function () {
+                        $('.selectpicker').selectpicker('refresh');
+                    });
                 } else {
                     steamService.loadGames()
                         .then(function (response) {
@@ -73,6 +68,10 @@
                             };
                             $scope.gamesLength = Object.keys($scope.games).length;
                             $scope.gamelist = $scope.games[0];
+
+                            angular.element(document).ready(function () {
+                                $('.selectpicker').selectpicker('refresh');
+                            });
                         });
                 }
             }
