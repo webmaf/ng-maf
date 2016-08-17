@@ -31,7 +31,8 @@
             })
             .when('/steam/:achievements', {
                 templateUrl: 'steam.html',
-                controller: 'routeController'
+                controller: 'routeController',
+                reloadOnSearch: false
             })
             .when('/one/:game/:test', {
                 templateUrl: 'src/view/one.html',

@@ -18,7 +18,7 @@ module.exports = {
             'app/.htaccess'
         ],
         php: [
-            'app/php/**/*.php',
+            'app/php/**/*',
             '!app/php/old/**/*.php'
         ],
         js: [

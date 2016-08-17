@@ -12,7 +12,7 @@
             controller: steamController
         };
 
-        function steamController($scope, $filter, $timeout) {
+        function steamController($scope, $filter, $timeout, $location) {
             /* jshint validthis: true */
             var vm = this,
                 orderBy = $filter('orderBy');
@@ -31,6 +31,10 @@
             $scope.playerMax = 4;
             $scope.playerCnt = 0;
 
+            $scope.$watch('gamelist', function () {
+                $location.search('game', $scope.gamelist.achievement);
+            });
+
             activate();
 
             // ----- functions
@@ -41,12 +45,12 @@
              */
             function activate() {
                 $scope.gamer = [
-                    {name: 'asmo', profile: 'profiles/76561197987497201', active: false},
-                    {name: 'janleon', profile: 'profiles/76561197995374327', active: false},
-                    {name: 'jessi', profile: 'profiles/76561197960362967', active: false},
-                    {name: 'maf', profile: 'profiles/76561197995754090', active: false},
-                    {name: 'melth', profile: 'profiles/76561198005875496', active: false},
-                    {name: 'sarx', profile: 'profiles/76561197971413380', active: false}
+                    {id: 0, name: 'asmo', profile: 'profiles/76561197987497201', active: false},
+                    {id: 1, name: 'janleon', profile: 'profiles/76561197995374327', active: false},
+                    {id: 2, name: 'jessi', profile: 'profiles/76561197960362967', active: false},
+                    {id: 3, name: 'maf', profile: 'profiles/76561197995754090', active: false},
+                    {id: 4, name: 'melth', profile: 'profiles/76561198005875496', active: false},
+                    {id: 5, name: 'sarx', profile: 'profiles/76561197971413380', active: false}
                 ];
 
                 if (localStorage.webmafGames && localStorage.webmafGames.length > 0) {
@@ -58,6 +62,8 @@
                     angular.element(document).ready(function () {
                         $('.selectpicker').selectpicker('refresh');
                     });
+
+                    setLocationParameters();
                 } else {
                     steamService.loadGames()
                         .then(function (response) {
@@ -72,7 +78,31 @@
                             angular.element(document).ready(function () {
                                 $('.selectpicker').selectpicker('refresh');
                             });
+
+                            setLocationParameters();
                         });
+                }
+            }
+
+            function setLocationParameters() {
+                var location = $location.search();
+
+                if (location.player) {
+                    for (var i = 0; i < location.player.length; i++) {
+                        $scope.gamer[location.player.charAt(i)].active = true;
+                        $scope.playerCnt++;
+                    }
+                }
+
+                if (location.game) {
+                    for (var needle in $scope.games) {
+                        if ($scope.games[needle].achievement == location.game) {
+                            $scope.gamelist = $scope.games[needle];
+                            break;
+                        }
+                    }
+                } else {
+                    $location.search('game', $scope.gamelist.achievement);
                 }
             }
 
@@ -190,13 +220,24 @@
             }
 
             function togglePlayer(typ) {
+                var location = $location.search();
+
                 if (typ.active || $scope.playerCnt < $scope.playerMax) {
                     typ.active = !typ.active;
 
+                    location.player = location.player || '';
+
                     if (typ.active) {
                         $scope.playerCnt++;
+
+                        $location.search('player', location.player + typ.id);
                     } else {
                         $scope.playerCnt--;
+
+                        $location.search('player', location.player.replace(typ.id, ''));
+                        if (location.player.length == 0) {
+                            $location.search('player', null);
+                        }
                     }
                 }
             }
