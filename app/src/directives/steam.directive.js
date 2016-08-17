@@ -31,10 +31,6 @@
             $scope.playerMax = 4;
             $scope.playerCnt = 0;
 
-            $scope.$watch('gamelist', function () {
-                $location.search('game', $scope.gamelist.achievement);
-            });
-
             activate();
 
             // ----- functions
@@ -59,11 +55,7 @@
                     $scope.gamesLength = Object.keys($scope.games).length;
                     $scope.gamelist = $scope.games[0];
 
-                    angular.element(document).ready(function () {
-                        $('.selectpicker').selectpicker('refresh');
-                    });
-
-                    setLocationParameters();
+                    runningStuff();
                 } else {
                     steamService.loadGames()
                         .then(function (response) {
@@ -75,13 +67,21 @@
                             $scope.gamesLength = Object.keys($scope.games).length;
                             $scope.gamelist = $scope.games[0];
 
-                            angular.element(document).ready(function () {
-                                $('.selectpicker').selectpicker('refresh');
-                            });
-
-                            setLocationParameters();
+                            runningStuff();
                         });
                 }
+            }
+
+            function runningStuff() {
+                angular.element(document).ready(function () {
+                    $('.selectpicker').selectpicker('refresh');
+                });
+
+                setLocationParameters();
+
+                $scope.$watch('gamelist', function () {
+                    $location.search('game', $scope.gamelist.achievement);
+                });
             }
 
             function setLocationParameters() {
